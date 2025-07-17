@@ -27,7 +27,7 @@ const AboutSection = () => (
       transition={{ duration: 0.7, delay: 0.2 }}
       viewport={{ once: true }}
     >
-      Hi! I’m Shrayas Srinivasan, currently pursuing my MS in Computer Science at Clemson University. I’m passionate about AI, Data, and Creative Software Engineering. (Replace this with your own bio!)
+      Hi! I’m Shrayas Srinivasan, currently pursuing my MS in Computer Science at Clemson University. I’m passionate about AI, Data, and Creative Software Engineering. (Replace this with your own bio! )
     </motion.p>
   </section>
 );

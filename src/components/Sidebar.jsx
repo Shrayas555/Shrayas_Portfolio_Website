@@ -18,7 +18,7 @@ const socialLinks = [
 ];
 
 const Sidebar = () => {
-  const [active, setActive] = useState('hero');
+  const [active, setActive] = useState(null);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -37,7 +37,8 @@ const Sidebar = () => {
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+      setActive(id);
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       setOpen(false);
     }
   };
