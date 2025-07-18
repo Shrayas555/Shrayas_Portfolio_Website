@@ -27,10 +27,10 @@ const ContactSection = () => (
         <a href="mailto:shraya2@g.clemson.edu" className="flex items-center gap-2 text-indigo-600 hover:underline">
           <FaEnvelope className="text-xl" /> shraya2@g.clemson.edu
         </a>
-        <a href="https://linkedin.com/in/shrayas-srinivasan" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-indigo-600 hover:underline">
+        <a href="https://linkedin.com/in/shrayas-srinivasan" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-indigo-600 hover:underline cursor-hover-target">
           <FaLinkedin className="text-xl" /> LinkedIn
         </a>
-        <a href="https://github.com/shrayas-srinivasan" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-indigo-600 hover:underline">
+        <a href="https://github.com/shrayas-srinivasan" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-indigo-600 hover:underline cursor-hover-target">
           <FaGithub className="text-xl" /> GitHub
         </a>
       </div>

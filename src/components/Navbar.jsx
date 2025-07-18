@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const navLinks = [
@@ -11,26 +11,15 @@ const navLinks = [
 ];
 
 const Navbar = () => {
-  const [active, setActive] = useState('hero');
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const offsets = navLinks.map(link => {
-        const el = document.getElementById(link.id);
-        return el ? el.getBoundingClientRect().top : Infinity;
-      });
-      const activeIndex = offsets.findIndex((top, i) => top > 0 && (i === 0 || offsets[i - 1] <= 0));
-      setActive(navLinks[Math.max(0, activeIndex - 1)].id);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  // No button highlighted at start
+  const [active, setActive] = useState(null);
 
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
+    setActive(id);
   };
 
   return (

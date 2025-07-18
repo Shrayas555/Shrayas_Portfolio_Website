@@ -6,10 +6,12 @@ import ResumeSection from './components/ResumeSection';
 import SkillsSection from './components/SkillsSection';
 import ProjectsSection from './components/ProjectsSection';
 import ContactSection from './components/ContactSection';
+import AnimatedCursor from './components/AnimatedCursor';
 
 function App() {
   return (
     <div className="flex h-screen font-sans">
+      <AnimatedCursor />
       <Sidebar />
       <main className="flex-1 ml-0 md:ml-72 h-full relative overflow-y-auto bg-gradient-to-br from-[#f4f4ff] to-[#e5e5fa]">
         {/* SVG tech/grid overlay */}

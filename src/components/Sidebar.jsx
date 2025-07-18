@@ -90,7 +90,7 @@ const Sidebar = () => {
             {/* Socials */}
             <div className="flex gap-4 mt-8 mb-2">
               {socialLinks.map((s, i) => (
-                <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" className="text-2xl text-gray-400 hover:text-violet-600 transition-colors">
+                <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" className="text-2xl text-gray-400 hover:text-violet-600 transition-colors cursor-hover-target">
                   {s.icon}
                 </a>
               ))}
