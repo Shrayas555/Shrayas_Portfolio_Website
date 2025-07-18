@@ -18,7 +18,7 @@ const ProjectsSection = () => (
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      viewport={{ once: true }}
+      viewport={{ once: false, amount: 0.3 }}
     >
       Projects
     </motion.h2>
@@ -35,7 +35,7 @@ const ProjectsSection = () => (
           whileHover={{ scale: 1.05, y: -8 }}
           transition={{ type: 'spring', stiffness: 200 }}
           variants={cardVariants}
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.3 }}
         >
           <h3 className="text-xl font-semibold mb-2 text-indigo-600 group-hover:text-indigo-800 transition-colors">{project.title}</h3>
           <p className="text-gray-700 mb-2">{project.description}</p>

@@ -21,7 +21,7 @@ const SkillsSection = () => (
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      viewport={{ once: true }}
+      viewport={{ once: false, amount: 0.3 }}
     >
       Skills
     </motion.h2>
@@ -39,7 +39,7 @@ const SkillsSection = () => (
               initial="initial"
               whileInView="animate"
               variants={barVariants}
-              viewport={{ once: true }}
+              viewport={{ once: false, amount: 0.3 }}
             />
           </div>
         </div>

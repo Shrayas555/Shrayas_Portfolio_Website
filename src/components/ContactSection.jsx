@@ -8,7 +8,7 @@ const ContactSection = () => (
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      viewport={{ once: true }}
+      viewport={{ once: false, amount: 0.3 }}
     >
       Contact
     </motion.h2>
@@ -17,7 +17,7 @@ const ContactSection = () => (
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, delay: 0.2 }}
-      viewport={{ once: true }}
+      viewport={{ once: false, amount: 0.3 }}
     >
       {/* Placeholder for map */}
       <div className="w-full md:w-1/2 h-48 bg-gray-200 rounded-lg flex items-center justify-center mb-6 md:mb-0">

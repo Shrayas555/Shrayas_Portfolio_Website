@@ -7,7 +7,7 @@ const ResumeSection = () => (
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      viewport={{ once: true }}
+      viewport={{ once: false, amount: 0.3 }}
     >
       Resume
     </motion.h2>
@@ -17,7 +17,7 @@ const ResumeSection = () => (
         initial={{ opacity: 0, x: -40 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
+        viewport={{ once: false, amount: 0.3 }}
       >
         <h3 className="text-xl font-semibold mb-2 text-indigo-600">Education</h3>
         <ul className="text-gray-700 text-left list-disc list-inside">
@@ -30,7 +30,7 @@ const ResumeSection = () => (
         initial={{ opacity: 0, x: 40 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, delay: 0.1 }}
-        viewport={{ once: true }}
+        viewport={{ once: false, amount: 0.3 }}
       >
         <h3 className="text-xl font-semibold mb-2 text-indigo-600">Experience</h3>
         <ul className="text-gray-700 text-left list-disc list-inside">
