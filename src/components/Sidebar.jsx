@@ -60,42 +60,52 @@ const Sidebar = () => {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -300, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 200, damping: 30 }}
-            className="fixed top-0 left-0 h-full w-72 bg-white shadow-2xl z-40 flex flex-col items-center py-10 px-4 md:translate-x-0 md:opacity-100"
+            className="fixed top-0 left-0 h-full w-80 bg-gradient-to-b from-charcoal via-white to-charcoal shadow-2xl z-40 flex flex-col h-full justify-between items-center py-12 px-6 md:translate-x-0 md:opacity-100 border-r border-slate/30"
           >
             {/* Profile */}
-            <div className="flex flex-col items-center mb-6">
-              <img
-                src="https://via.placeholder.com/120"
-                alt="Shrayas Srinivasan"
-                className="w-28 h-28 rounded-full object-cover border-4 border-violet-500 shadow-xl mb-3 bg-white"
-              />
-              <div className="text-xl font-bold text-violet-700 text-center tracking-tight">Shrayas Srinivasan</div>
+            <div className="flex flex-col items-center mb-8 mt-2">
+              <div className="relative w-36 h-36 mb-4 flex items-center justify-center">
+                <span className="absolute inset-0 rounded-full bg-gradient-to-tr from-accent/60 via-white/80 to-accent/60 blur-sm opacity-80 z-0"></span>
+                <span className="absolute inset-0 rounded-full border-4 border-accent z-10"></span>
+                <img
+                  src="/profile.png"
+                  alt="Shrayas Raju"
+                  className="relative w-32 h-32 rounded-full object-cover border-4 border-silver shadow-xl bg-slate z-20"
+                />
+              </div>
+              <div className="text-3xl font-extrabold text-charcoal text-center tracking-tight mb-2">Shrayas Raju</div>
             </div>
             {/* Nav Links */}
-            <nav className="flex-1 w-full">
-              <ul className="flex flex-col gap-2">
+            <nav className="flex-1 w-full flex flex-col items-center min-h-0 overflow-y-auto">
+              <ul className="flex flex-col gap-6 w-full mt-4 mb-4">
                 {navLinks.map(link => (
                   <li key={link.id}>
                     <button
                       onClick={() => scrollToSection(link.id)}
-                      className={`flex items-center gap-3 w-full px-4 py-2 rounded-lg transition-all duration-200 font-medium text-base ${active === link.id ? 'bg-violet-100 text-violet-700 shadow' : 'text-gray-700 hover:bg-violet-50 hover:text-violet-600'} hover:scale-105 focus:outline-none`}
-                      style={{ boxShadow: active === link.id ? '0 0 8px 2px #a78bfa55' : undefined }}
+                      className={`flex items-center gap-3 max-w-[95%] mx-auto px-6 py-3 rounded-full transition-all duration-200 font-semibold text-base
+                        ${active === link.id
+                          ? 'bg-white/80 backdrop-blur-md text-accent shadow-lg scale-105 ring-2 ring-accent'
+                          : 'text-charcoal hover:bg-white/70 hover:backdrop-blur-md hover:text-accent hover:shadow-lg hover:ring-2 hover:ring-accent/60'}
+                        hover:scale-105 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-0 focus:bg-white/80 focus:text-accent focus:shadow-lg focus:backdrop-blur-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-0 focus-visible:bg-white/80 focus-visible:text-accent focus-visible:shadow-lg focus-visible:backdrop-blur-md`}
+                      style={{ boxShadow: active === link.id ? '0 0 12px 2px #A3A3A355' : undefined }}
                     >
-                      <span className="text-xl">{link.icon}</span> {link.label}
+                      <span className="text-xl">{link.icon}</span> <span className="pt-0.5">{link.label}</span>
                     </button>
                   </li>
                 ))}
               </ul>
             </nav>
             {/* Socials */}
-            <div className="flex gap-4 mt-8 mb-2">
-              {socialLinks.map((s, i) => (
-                <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" className="text-2xl text-gray-400 hover:text-violet-600 transition-colors cursor-hover-target">
-                  {s.icon}
-                </a>
-              ))}
+            <div className="flex flex-col items-center gap-3 mb-2 w-full mt-8">
+              <div className="flex gap-6 mb-2">
+                {socialLinks.map((s, i) => (
+                  <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" className="text-xl text-silver hover:text-accent transition-colors cursor-hover-target">
+                    {s.icon}
+                  </a>
+                ))}
+              </div>
+              <div className="text-xs text-silver mt-2 font-medium">&copy; 2025 Shrayas Raju</div>
             </div>
-            <div className="text-xs text-gray-400 mt-2">&copy; 2025 Shrayas Srinivasan</div>
           </motion.aside>
         )}
       </AnimatePresence>

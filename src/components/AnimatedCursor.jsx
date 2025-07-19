@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 const TRAIL_COLORS = [
-  '#7c3aed', // violet-600 (dark)
-  '#6d28d9', // violet-700 (darker)
-  '#a78bfa', // violet-400 (accent)
+  '#A3A3A3', // platinum/silver (accent)
+  '#CED4DA', // silver
+  '#fff',    // white for extra pop
 ];
 const TRAIL_LENGTH = 14;
 
@@ -59,9 +59,9 @@ const AnimatedCursor = () => {
           width: clicked ? 22 : 18,
           height: clicked ? 22 : 18,
           borderRadius: '50%',
-          background: '#a78bfa', // violet-400
+          background: '#A3A3A3', // platinum/silver accent
           border: '2px solid #fff',
-          boxShadow: '0 0 8px 2px #7c3aed, 0 0 0 2px #fff',
+          boxShadow: '0 0 8px 2px #A3A3A3, 0 0 0 2px #fff',
           pointerEvents: 'none',
           zIndex: 9999,
           transition: 'width 0.11s, height 0.11s, background 0.13s',
@@ -94,7 +94,7 @@ const AnimatedCursor = () => {
             opacity: 0.7 - i * 0.07,
             pointerEvents: 'none',
             zIndex: 9998,
-            boxShadow: '0 0 3px 1px #7c3aed',
+            boxShadow: '0 0 3px 1px #A3A3A3',
             transition: 'all 0.03s',
           }}
         />

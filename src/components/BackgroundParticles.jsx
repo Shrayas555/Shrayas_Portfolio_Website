@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 
 const blobs = [
-  { style: 'top-[-6rem] left-[-6rem] w-72 h-72', color: 'bg-indigo-400' },
-  { style: 'top-[10rem] right-[-8rem] w-96 h-96', color: 'bg-pink-400' },
-  { style: 'bottom-[-6rem] left-[30%] w-80 h-80', color: 'bg-yellow-300' },
+  { style: 'top-[-6rem] left-[-6rem] w-72 h-72', color: 'bg-accent' },
+  { style: 'top-[10rem] right-[-8rem] w-96 h-96', color: 'bg-slate' },
+  { style: 'bottom-[-6rem] left-[30%] w-80 h-80', color: 'bg-silver' },
 ];
 
 const blobVariants = {

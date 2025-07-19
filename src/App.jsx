@@ -7,8 +7,22 @@ import SkillsSection from './components/SkillsSection';
 import ProjectsSection from './components/ProjectsSection';
 import ContactSection from './components/ContactSection';
 import AnimatedCursor from './components/AnimatedCursor';
+import React, { useRef, useEffect, useState } from 'react';
 
 function App() {
+  const [scrollDirection, setScrollDirection] = useState('down');
+  const lastScrollY = useRef(window.scrollY);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      setScrollDirection(currentY > lastScrollY.current ? 'down' : 'up');
+      lastScrollY.current = currentY;
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="flex h-screen font-sans">
       <AnimatedCursor />
@@ -25,11 +39,11 @@ function App() {
         </svg>
         <div className="relative z-10">
           <section id="hero"><HeroSection /></section>
-          <AboutSection />
-          <ResumeSection />
-          <SkillsSection />
-          <ProjectsSection />
-          <ContactSection />
+          <AboutSection scrollDirection={scrollDirection} />
+          <ResumeSection scrollDirection={scrollDirection} />
+          <SkillsSection scrollDirection={scrollDirection} />
+          <ProjectsSection scrollDirection={scrollDirection} />
+          <ContactSection scrollDirection={scrollDirection} />
         </div>
       </main>
     </div>

@@ -11,14 +11,14 @@ const cardVariants = {
   whileInView: { opacity: 1, y: 0 },
 };
 
-const ProjectsSection = () => (
-  <section id="projects" className="py-20 bg-gray-50 text-center">
+const ProjectsSection = ({ scrollDirection }) => (
+  <section id="projects" className="py-20 bg-charcoal text-center">
     <motion.h2
-      className="text-3xl font-bold mb-8 text-indigo-700"
-      initial={{ opacity: 0, y: 40 }}
+      className="text-3xl font-bold mb-8 text-accent"
+      initial={{ opacity: 0, y: scrollDirection === 'down' ? 40 : -40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      viewport={{ once: false, amount: 0.3 }}
+      viewport={{ once: false, amount: 0 }}
     >
       Projects
     </motion.h2>
@@ -29,17 +29,16 @@ const ProjectsSection = () => (
           href={project.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="block bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow duration-300 group"
-          initial="initial"
-          whileInView="whileInView"
+          className="block bg-slate rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow duration-300 group"
+          initial={{ opacity: 0, y: scrollDirection === 'down' ? 40 : -40 }}
+          whileInView={{ opacity: 1, y: 0 }}
           whileHover={{ scale: 1.05, y: -8 }}
           transition={{ type: 'spring', stiffness: 200 }}
-          variants={cardVariants}
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: false, amount: 0 }}
         >
-          <h3 className="text-xl font-semibold mb-2 text-indigo-600 group-hover:text-indigo-800 transition-colors">{project.title}</h3>
-          <p className="text-gray-700 mb-2">{project.description}</p>
-          <span className="text-indigo-400 text-sm group-hover:underline">View Project →</span>
+          <h3 className="text-xl font-semibold mb-2 text-accent group-hover:text-silver transition-colors">{project.title}</h3>
+          <p className="text-silver mb-2">{project.description}</p>
+          <span className="text-accent text-sm group-hover:underline">View Project →</span>
         </motion.a>
       ))}
     </div>
