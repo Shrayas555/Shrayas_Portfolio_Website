@@ -68,9 +68,10 @@ const Sidebar = () => {
                 <span className="absolute inset-0 rounded-full bg-gradient-to-tr from-accent/60 via-white/80 to-accent/60 blur-sm opacity-80 z-0"></span>
                 <span className="absolute inset-0 rounded-full border-4 border-accent z-10"></span>
                 <img
-                  src="/profile.png"
+                  src="/profile_2.png"
                   alt="Shrayas Raju"
-                  className="relative w-32 h-32 rounded-full object-cover border-4 border-silver shadow-xl bg-slate z-20"
+                  className="relative w-32 h-32 rounded-full object-cover object-top border-4 border-silver shadow-xl bg-slate z-20"
+                  style={{ objectPosition: 'center 0' }}
                 />
               </div>
               <div className="text-3xl font-extrabold text-charcoal text-center tracking-tight mb-2">Shrayas Raju</div>
