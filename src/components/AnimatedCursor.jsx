@@ -1,47 +1,64 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-const TRAIL_COLORS = [
-  '#A3A3A3', // platinum/silver (accent)
-  '#CED4DA', // silver
-  '#fff',    // white for extra pop
-];
-const TRAIL_LENGTH = 14;
-
 const AnimatedCursor = () => {
   const cursorRef = useRef(null);
   const [coords, setCoords] = useState({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
   const [clicked, setClicked] = useState(false);
-  const [particles, setParticles] = useState([]);
-  const clearTrailTimeout = useRef(null);
+  const [trail, setTrail] = useState([]);
+  const animationRef = useRef(null);
 
+  // Handle mouse movement
   useEffect(() => {
-    const moveCursor = (e) => {
+    const handleMouseMove = (e) => {
       setCoords({ x: e.clientX, y: e.clientY });
-      setParticles((prev) => [
-        ...prev,
-        {
-          x: e.clientX,
-          y: e.clientY,
-          color: TRAIL_COLORS[Math.floor(Math.random() * TRAIL_COLORS.length)],
-          id: Math.random(),
-        },
-      ].slice(-TRAIL_LENGTH));
-      if (clearTrailTimeout.current) clearTimeout(clearTrailTimeout.current);
-      clearTrailTimeout.current = setTimeout(() => setParticles([]), 80);
+      
+      setTrail(prev => {
+        const newTrail = [
+          { 
+            x: e.clientX, 
+            y: e.clientY, 
+            id: Date.now() + Math.random(),
+            timestamp: Date.now() 
+          },
+          ...prev
+        ].slice(0, 40); // Keep last 40 points for a much longer trail
+        
+        return newTrail;
+      });
     };
-    const handleDown = () => setClicked(true);
-    const handleUp = () => setClicked(false);
-    window.addEventListener('mousemove', moveCursor);
-    window.addEventListener('mousedown', handleDown);
-    window.addEventListener('mouseup', handleUp);
+
+    const handleMouseDown = () => setClicked(true);
+    const handleMouseUp = () => setClicked(false);
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousedown', handleMouseDown);
+    window.addEventListener('mouseup', handleMouseUp);
+
     return () => {
-      window.removeEventListener('mousemove', moveCursor);
-      window.removeEventListener('mousedown', handleDown);
-      window.removeEventListener('mouseup', handleUp);
-      if (clearTrailTimeout.current) clearTimeout(clearTrailTimeout.current);
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mousedown', handleMouseDown);
+      window.removeEventListener('mouseup', handleMouseUp);
     };
   }, []);
 
+  // Animation loop for smooth trail updates
+  useEffect(() => {
+    const animate = () => {
+      // Clean up old trail points (older than 200ms for much longer trail)
+      setTrail(prev => prev.filter(point => Date.now() - point.timestamp < 200));
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, []);
+
+  // Hide default cursor
   useEffect(() => {
     document.body.style.cursor = 'none';
     return () => { document.body.style.cursor = ''; };
@@ -49,56 +66,78 @@ const AnimatedCursor = () => {
 
   return (
     <>
-      {/* Main cursor dot with white outline */}
+      {/* Professional trail particles */}
+             {trail.map((point, index) => {
+         const size = clicked ? 18 - index * 0.4 : 14 - index * 0.3;
+         const opacity = 1 - index * 0.025;
+         const scale = 1 - index * 0.02;
+        
+        return (
+          <div
+            key={point.id}
+            style={{
+              position: 'fixed',
+              left: point.x - size / 2,
+              top: point.y - size / 2,
+              width: Math.max(size, 3),
+              height: Math.max(size, 3),
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, #A3A3A3 0%, #B8B8B8 50%, #A3A3A3 100%)',
+              border: '1px solid rgba(255, 255, 255, 0.8)',
+              opacity: Math.max(opacity, 0.1),
+              transform: `scale(${Math.max(scale, 0.3)})`,
+              pointerEvents: 'none',
+              zIndex: 9998 - index,
+              boxShadow: `
+                0 0 ${size * 0.8}px ${size * 0.3}px rgba(163, 163, 163, 0.4),
+                0 0 ${size * 0.4}px ${size * 0.2}px rgba(255, 255, 255, 0.3),
+                inset 0 0 ${size * 0.2}px rgba(255, 255, 255, 0.2)
+              `,
+              transition: 'all 0.05s ease-out',
+              filter: 'blur(0.3px)',
+            }}
+          />
+        );
+      })}
+      
+      {/* Main cursor dot */}
       <div
         ref={cursorRef}
         style={{
           position: 'fixed',
           left: coords.x - 10,
           top: coords.y - 10,
-          width: clicked ? 22 : 18,
-          height: clicked ? 22 : 18,
+          width: clicked ? 24 : 20,
+          height: clicked ? 24 : 20,
           borderRadius: '50%',
-          background: '#A3A3A3', // platinum/silver accent
-          border: '2px solid #fff',
-          boxShadow: '0 0 8px 2px #A3A3A3, 0 0 0 2px #fff',
+          background: 'linear-gradient(135deg, #A3A3A3 0%, #B8B8B8 50%, #A3A3A3 100%)',
+          border: '2px solid rgba(255, 255, 255, 0.9)',
+          boxShadow: `
+            0 0 20px 6px rgba(163, 163, 163, 0.5),
+            0 0 8px 2px rgba(255, 255, 255, 0.4),
+            inset 0 0 4px rgba(255, 255, 255, 0.3)
+          `,
           pointerEvents: 'none',
           zIndex: 9999,
-          transition: 'width 0.11s, height 0.11s, background 0.13s',
+          transition: 'width 0.15s ease-out, height 0.15s ease-out, box-shadow 0.15s ease-out',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          filter: 'blur(0.2px)',
         }}
       >
-        {/* White inner dot for contrast */}
+        {/* Inner dot with enhanced glow */}
         <div style={{
-          width: clicked ? 7 : 5,
-          height: clicked ? 7 : 5,
+          width: clicked ? 8 : 6,
+          height: clicked ? 8 : 6,
           borderRadius: '50%',
-          background: '#fff',
+          background: 'radial-gradient(circle, #fff 0%, #f0f0f0 100%)',
+          boxShadow: `
+            0 0 8px 2px rgba(255, 255, 255, 0.8),
+            inset 0 0 2px rgba(255, 255, 255, 0.9)
+          `,
         }} />
       </div>
-      {/* Short, fast, tight trail that disappears when not moving */}
-      {particles.map((p, i) => (
-        <div
-          key={p.id}
-          style={{
-            position: 'fixed',
-            left: p.x - 4,
-            top: p.y - 4,
-            width: 8 - i * 0.5,
-            height: 8 - i * 0.5,
-            borderRadius: '50%',
-            background: p.color,
-            border: '1px solid #fff',
-            opacity: 0.7 - i * 0.07,
-            pointerEvents: 'none',
-            zIndex: 9998,
-            boxShadow: '0 0 3px 1px #A3A3A3',
-            transition: 'all 0.03s',
-          }}
-        />
-      ))}
     </>
   );
 };
