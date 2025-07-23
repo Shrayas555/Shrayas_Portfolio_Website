@@ -7,10 +7,12 @@ import SkillsSection from './components/SkillsSection';
 import ProjectsSection from './components/ProjectsSection';
 import ContactSection from './components/ContactSection';
 import AnimatedCursor from './components/AnimatedCursor';
+import EntranceAnimation from './components/EntranceAnimation';
 import React, { useRef, useEffect, useState } from 'react';
 
 function App() {
   const [scrollDirection, setScrollDirection] = useState('down');
+  const [showEntrance, setShowEntrance] = useState(true);
   const lastScrollY = useRef(window.scrollY);
 
   useEffect(() => {
@@ -22,6 +24,14 @@ function App() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleEntranceComplete = () => {
+    setShowEntrance(false);
+  };
+
+  if (showEntrance) {
+    return <EntranceAnimation onComplete={handleEntranceComplete} />;
+  }
 
   return (
     <div className="flex h-screen font-sans">
