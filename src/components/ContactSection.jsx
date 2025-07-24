@@ -1,26 +1,25 @@
 import { motion } from 'framer-motion';
-import { FaEnvelope, FaLinkedin, FaGithub, FaMapMarkerAlt, FaPhone, FaGlobe } from 'react-icons/fa';
-import { useState, useEffect } from 'react';
+import { FaEnvelope, FaLinkedin, FaGithub, FaMapMarkerAlt } from 'react-icons/fa';
+import { useState, useEffect, useMemo } from 'react';
+import StarfieldBackground from './StarfieldBackground';
 
 const ContactSection = ({ scrollDirection }) => {
   const [hoveredContact, setHoveredContact] = useState(null);
-  const [floatingElements, setFloatingElements] = useState([]);
-
-  useEffect(() => {
-    // Generate floating elements
+  const [floatingElements] = useState(() => {
+    // Generate floating elements once - reduced for performance
     const elements = [];
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 10; i++) { // Reduced from 20 to 10
       elements.push({
         id: i,
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: Math.random() * 4 + 2,
+        size: Math.random() * 3 + 1, // Smaller elements
         delay: Math.random() * 2,
-        duration: 3 + Math.random() * 2
+        duration: 4 + Math.random() * 2 // Slower animation
       });
     }
-    setFloatingElements(elements);
-  }, []);
+    return elements;
+  });
 
   const contactInfo = [
     {
@@ -28,7 +27,7 @@ const ContactSection = ({ scrollDirection }) => {
       title: 'Email',
       value: 'shraya2@g.clemson.edu',
       link: 'mailto:shraya2@g.clemson.edu',
-      color: 'from-blue-500 to-cyan-500',
+      color: 'from-accent to-slate',
       emoji: '📧'
     },
     {
@@ -36,7 +35,7 @@ const ContactSection = ({ scrollDirection }) => {
       title: 'LinkedIn',
       value: 'shrayas-srinivasan',
       link: 'https://linkedin.com/in/shrayas-srinivasan',
-      color: 'from-blue-600 to-indigo-600',
+      color: 'from-slate to-silver',
       emoji: '💼'
     },
     {
@@ -44,7 +43,7 @@ const ContactSection = ({ scrollDirection }) => {
       title: 'GitHub',
       value: 'shrayas-srinivasan',
       link: 'https://github.com/shrayas-srinivasan',
-      color: 'from-gray-700 to-black',
+      color: 'from-accent to-slate',
       emoji: '🐙'
     },
     {
@@ -52,12 +51,13 @@ const ContactSection = ({ scrollDirection }) => {
       title: 'Location',
       value: 'Clemson, SC',
       link: null,
-      color: 'from-green-500 to-emerald-500',
+      color: 'from-slate to-silver',
       emoji: '📍'
     }
   ];
 
-  const containerVariants = {
+  // Memoize expensive calculations
+  const containerVariants = useMemo(() => ({
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -66,9 +66,9 @@ const ContactSection = ({ scrollDirection }) => {
         delayChildren: 0.1
       }
     }
-  };
+  }), []);
 
-  const contactCardVariants = {
+  const contactCardVariants = useMemo(() => ({
     hidden: { 
       opacity: 0, 
       y: scrollDirection === 'down' ? 60 : -60,
@@ -87,9 +87,9 @@ const ContactSection = ({ scrollDirection }) => {
         damping: 15
       }
     }
-  };
+  }), [scrollDirection]);
 
-  const floatingVariants = {
+  const floatingVariants = useMemo(() => ({
     animate: (custom) => ({
       y: [0, -20, 0],
       x: [0, 10, 0],
@@ -102,16 +102,19 @@ const ContactSection = ({ scrollDirection }) => {
         ease: "easeInOut"
       }
     })
-  };
+  }), []);
 
   return (
-    <section id="contact" className="relative py-20 bg-gradient-to-br from-white via-blue-50 to-purple-50 overflow-hidden">
+    <section id="contact" className="relative py-20 bg-black overflow-hidden">
+      {/* Starfield background for consistency */}
+      <StarfieldBackground className="section-background" particleCount={30} />
+      
       {/* Background floating elements */}
       <div className="absolute inset-0 pointer-events-none">
         {floatingElements.map((element) => (
           <motion.div
             key={element.id}
-            className="absolute rounded-full bg-gradient-to-r from-accent to-purple-400 opacity-20"
+            className="absolute rounded-full bg-gradient-to-r from-accent to-slate opacity-20"
             style={{
               left: `${element.x}%`,
               top: `${element.y}%`,
@@ -127,7 +130,7 @@ const ContactSection = ({ scrollDirection }) => {
 
       {/* Glowing background */}
       <motion.div
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] rounded-full bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 opacity-30 blur-3xl"
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] rounded-full bg-gradient-to-r from-accent/20 via-slate/20 to-silver/20 opacity-30 blur-3xl"
         animate={{
           scale: [1, 1.1, 1],
           opacity: [0.3, 0.4, 0.3],
@@ -154,13 +157,13 @@ const ContactSection = ({ scrollDirection }) => {
           transition={{ duration: 1, type: "spring" }}
           viewport={{ once: true }}
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-accent via-purple-600 to-pink-600">
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-accent via-slate to-silver">
             Get In Touch
           </h2>
           
           {/* Animated underline */}
           <motion.div
-            className="h-1 bg-gradient-to-r from-accent via-purple-500 to-pink-500 rounded-full mx-auto"
+            className="h-1 bg-gradient-to-r from-accent via-slate to-silver rounded-full mx-auto"
             initial={{ width: 0 }}
             whileInView={{ width: '300px' }}
             transition={{ duration: 1.5, delay: 0.5 }}
@@ -168,9 +171,9 @@ const ContactSection = ({ scrollDirection }) => {
           />
           
           <motion.p
-            className="text-xl text-gray-600 mt-6 max-w-2xl mx-auto"
+            className="text-xl text-silver mt-6 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
             viewport={{ once: true }}
           >
@@ -195,10 +198,10 @@ const ContactSection = ({ scrollDirection }) => {
             >
               {/* Contact Card */}
               <motion.div
-                className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-gray-100 relative overflow-hidden h-full"
+                className="bg-slate/20 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-accent/30 relative overflow-hidden h-full"
                 whileHover={{ 
-                  boxShadow: "0 25px 50px rgba(0,0,0,0.1)",
-                  borderColor: "rgba(173, 216, 230, 0.5)",
+                  boxShadow: "0 25px 50px rgba(163, 163, 163, 0.2)",
+                  borderColor: "rgba(163, 163, 163, 0.5)",
                   transition: { duration: 0.3 }
                 }}
               >

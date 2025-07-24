@@ -1,26 +1,26 @@
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import StarfieldBackground from './StarfieldBackground';
 
 const AboutSection = ({ scrollDirection }) => {
-  const [floatingElements, setFloatingElements] = useState([]);
-
-  useEffect(() => {
-    // Generate floating elements
+  const [floatingElements] = useState(() => {
+    // Generate floating elements once - reduced for performance
     const elements = [];
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 8; i++) { // Reduced from 15 to 8
       elements.push({
         id: i,
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: Math.random() * 4 + 2,
+        size: Math.random() * 3 + 1, // Smaller elements
         delay: Math.random() * 2,
-        duration: 3 + Math.random() * 2
+        duration: 4 + Math.random() * 2 // Slower animation
       });
     }
-    setFloatingElements(elements);
-  }, []);
+    return elements;
+  });
 
-  const containerVariants = {
+  // Memoize expensive calculations
+  const containerVariants = useMemo(() => ({
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -29,9 +29,9 @@ const AboutSection = ({ scrollDirection }) => {
         delayChildren: 0.1
       }
     }
-  };
+  }), []);
 
-  const itemVariants = {
+  const itemVariants = useMemo(() => ({
     hidden: { 
       opacity: 0, 
       y: scrollDirection === 'down' ? 60 : -60,
@@ -50,9 +50,9 @@ const AboutSection = ({ scrollDirection }) => {
         damping: 15
       }
     }
-  };
+  }), [scrollDirection]);
 
-  const floatingVariants = {
+  const floatingVariants = useMemo(() => ({
     animate: (custom) => ({
       y: [0, -20, 0],
       x: [0, 10, 0],
@@ -64,9 +64,9 @@ const AboutSection = ({ scrollDirection }) => {
         ease: "easeInOut"
       }
     })
-  };
+  }), []);
 
-  const glowVariants = {
+  const glowVariants = useMemo(() => ({
     hidden: { opacity: 0, scale: 0.8 },
     visible: { 
       opacity: 1, 
@@ -78,16 +78,19 @@ const AboutSection = ({ scrollDirection }) => {
         ease: "easeInOut"
       }
     }
-  };
+  }), []);
 
   return (
-    <section id="about" className="relative py-20 bg-gradient-to-br from-white via-blue-50 to-purple-50 overflow-hidden">
+    <section id="about" className="relative py-20 bg-black overflow-hidden">
+      {/* Starfield background for consistency */}
+      <StarfieldBackground className="section-background" particleCount={30} />
+      
       {/* Background floating elements */}
       <div className="absolute inset-0 pointer-events-none">
         {floatingElements.map((element) => (
           <motion.div
             key={element.id}
-            className="absolute rounded-full bg-gradient-to-r from-accent to-purple-400 opacity-20"
+            className="absolute rounded-full bg-gradient-to-r from-accent to-slate opacity-20"
             style={{
               left: `${element.x}%`,
               top: `${element.y}%`,
@@ -103,7 +106,7 @@ const AboutSection = ({ scrollDirection }) => {
 
       {/* Glowing background orb */}
       <motion.div
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 opacity-30 blur-3xl"
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-gradient-to-r from-accent/20 via-slate/20 to-silver/20 opacity-30 blur-3xl"
         variants={glowVariants}
         initial="hidden"
         whileInView="visible"
@@ -122,19 +125,19 @@ const AboutSection = ({ scrollDirection }) => {
           className="mb-12"
           variants={itemVariants}
         >
-    <motion.h2
-            className="text-5xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-accent via-purple-600 to-pink-600"
+          <motion.h2
+            className="text-5xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-accent via-slate to-silver"
             initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, type: "spring" }}
             viewport={{ once: true }}
-    >
-      About Me
-    </motion.h2>
+          >
+            About Me
+          </motion.h2>
           
           {/* Animated underline */}
           <motion.div
-            className="h-1 bg-gradient-to-r from-accent via-purple-500 to-pink-500 rounded-full mx-auto"
+            className="h-1 bg-gradient-to-r from-accent via-slate to-silver rounded-full mx-auto"
             initial={{ width: 0 }}
             whileInView={{ width: '200px' }}
             transition={{ duration: 1.5, delay: 0.5 }}
@@ -165,7 +168,7 @@ const AboutSection = ({ scrollDirection }) => {
             
             {/* Floating badges */}
             <motion.div
-              className="absolute -top-4 -right-4 bg-gradient-to-r from-accent to-purple-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg"
+              className="absolute -top-4 -right-4 bg-gradient-to-r from-accent to-slate text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg"
               initial={{ scale: 0, rotate: -180 }}
               whileInView={{ scale: 1, rotate: 0 }}
               transition={{ duration: 0.8, delay: 0.5, type: "spring" }}
@@ -175,7 +178,7 @@ const AboutSection = ({ scrollDirection }) => {
             </motion.div>
             
             <motion.div
-              className="absolute -bottom-4 -left-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg"
+              className="absolute -bottom-4 -left-4 bg-gradient-to-r from-slate to-silver text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg"
               initial={{ scale: 0, rotate: 180 }}
               whileInView={{ scale: 1, rotate: 0 }}
               transition={{ duration: 0.8, delay: 0.7, type: "spring" }}
@@ -194,15 +197,15 @@ const AboutSection = ({ scrollDirection }) => {
             viewport={{ once: true }}
           >
             <motion.div
-              className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-gray-100"
+              className="bg-slate/20 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-accent/30"
               whileHover={{ 
                 scale: 1.02,
-                boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+                boxShadow: "0 20px 40px rgba(163, 163, 163, 0.2)",
                 transition: { duration: 0.3 }
               }}
             >
               <motion.p
-                className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6"
+                className="text-lg md:text-xl text-silver leading-relaxed mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
@@ -211,15 +214,15 @@ const AboutSection = ({ scrollDirection }) => {
                 Hi! I'm <span className="font-bold text-accent">Shrayas Srinivasan</span>, currently pursuing my MS in Computer Science at Clemson University. I'm passionate about AI, Data, and Creative Software Engineering.
               </motion.p>
               
-    <motion.p
-                className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6"
+              <motion.p
+                className="text-lg md:text-xl text-silver leading-relaxed mb-6"
                 initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
                 viewport={{ once: true }}
-    >
+              >
                 I love turning complex problems into simple, beautiful, and intuitive solutions. When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community.
-    </motion.p>
+              </motion.p>
             </motion.div>
 
             {/* Skills preview */}
@@ -233,7 +236,7 @@ const AboutSection = ({ scrollDirection }) => {
               {['React', 'Node.js', 'Python', 'AI/ML', 'Data Science'].map((skill, index) => (
                 <motion.span
                   key={skill}
-                  className="bg-gradient-to-r from-accent to-purple-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg"
+                  className="bg-gradient-to-r from-accent to-slate text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg"
                   initial={{ scale: 0, rotate: -180 }}
                   whileInView={{ scale: 1, rotate: 0 }}
                   transition={{ duration: 0.5, delay: 0.8 + index * 0.1, type: "spring" }}

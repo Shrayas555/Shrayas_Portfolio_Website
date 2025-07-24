@@ -1,39 +1,39 @@
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import StarfieldBackground from './StarfieldBackground';
 
 const skills = [
-  { name: 'JavaScript', level: 90, icon: '⚡', color: 'from-yellow-400 to-orange-500' },
-  { name: 'React', level: 85, icon: '⚛️', color: 'from-blue-400 to-cyan-500' },
-  { name: 'Python', level: 80, icon: '🐍', color: 'from-green-400 to-emerald-500' },
-  { name: 'Tailwind CSS', level: 80, icon: '🎨', color: 'from-teal-400 to-blue-500' },
-  { name: 'Framer Motion', level: 70, icon: '✨', color: 'from-purple-400 to-pink-500' },
-  { name: 'AI/ML', level: 75, icon: '🤖', color: 'from-indigo-400 to-purple-500' },
-  { name: 'Node.js', level: 85, icon: '🟢', color: 'from-green-500 to-emerald-600' },
-  { name: 'MongoDB', level: 75, icon: '🍃', color: 'from-green-600 to-teal-600' },
+  { name: 'JavaScript', level: 90, icon: '⚡', color: 'from-accent to-slate' },
+  { name: 'React', level: 85, icon: '⚛️', color: 'from-slate to-silver' },
+  { name: 'Python', level: 80, icon: '🐍', color: 'from-accent to-slate' },
+  { name: 'Tailwind CSS', level: 80, icon: '🎨', color: 'from-slate to-silver' },
+  { name: 'Framer Motion', level: 70, icon: '✨', color: 'from-accent to-slate' },
+  { name: 'AI/ML', level: 75, icon: '🤖', color: 'from-slate to-silver' },
+  { name: 'Node.js', level: 85, icon: '🟢', color: 'from-accent to-slate' },
+  { name: 'MongoDB', level: 75, icon: '🍃', color: 'from-slate to-silver' },
 ];
 
 const SkillsSection = ({ scrollDirection }) => {
   const [hoveredSkill, setHoveredSkill] = useState(null);
-  const [floatingIcons, setFloatingIcons] = useState([]);
-
-  useEffect(() => {
-    // Generate floating icons
+  const [floatingIcons] = useState(() => {
+    // Generate floating icons once - reduced for performance
     const icons = ['⚡', '⚛️', '🐍', '🎨', '✨', '🤖', '🟢', '🍃'];
     const floating = [];
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 10; i++) { // Reduced from 20 to 10
       floating.push({
         id: i,
         icon: icons[Math.floor(Math.random() * icons.length)],
         x: Math.random() * 100,
         y: Math.random() * 100,
         delay: Math.random() * 2,
-        duration: 4 + Math.random() * 3
+        duration: 5 + Math.random() * 3 // Slower animation
       });
     }
-    setFloatingIcons(floating);
-  }, []);
+    return floating;
+  });
 
-  const containerVariants = {
+  // Memoize expensive calculations
+  const containerVariants = useMemo(() => ({
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -42,9 +42,9 @@ const SkillsSection = ({ scrollDirection }) => {
         delayChildren: 0.2
       }
     }
-  };
+  }), []);
 
-  const skillCardVariants = {
+  const skillCardVariants = useMemo(() => ({
     hidden: { 
       opacity: 0, 
       y: scrollDirection === 'down' ? 60 : -60,
@@ -63,9 +63,9 @@ const SkillsSection = ({ scrollDirection }) => {
         damping: 15
       }
     }
-  };
+  }), [scrollDirection]);
 
-  const floatingVariants = {
+  const floatingVariants = useMemo(() => ({
     animate: (custom) => ({
       y: [0, -30, 0],
       x: [0, 15, 0],
@@ -78,9 +78,9 @@ const SkillsSection = ({ scrollDirection }) => {
         ease: "easeInOut"
       }
     })
-  };
+  }), []);
 
-  const progressVariants = {
+  const progressVariants = useMemo(() => ({
     hidden: { width: 0 },
     visible: (level) => ({ 
       width: `${level}%`,
@@ -91,16 +91,19 @@ const SkillsSection = ({ scrollDirection }) => {
         damping: 15
       }
     })
-  };
+  }), []);
 
   return (
-    <section id="skills" className="relative py-20 bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 overflow-hidden">
+    <section id="skills" className="relative py-20 bg-black overflow-hidden">
+      {/* Starfield background for consistency */}
+      <StarfieldBackground className="section-background" particleCount={30} />
+      
       {/* Background floating icons */}
       <div className="absolute inset-0 pointer-events-none">
         {floatingIcons.map((item) => (
           <motion.div
             key={item.id}
-            className="absolute text-2xl opacity-10"
+            className="absolute text-2xl opacity-20"
             style={{
               left: `${item.x}%`,
               top: `${item.y}%`,
@@ -116,7 +119,7 @@ const SkillsSection = ({ scrollDirection }) => {
 
       {/* Glowing background */}
       <motion.div
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] rounded-full bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 opacity-20 blur-3xl"
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] rounded-full bg-gradient-to-r from-accent/20 via-slate/20 to-silver/20 opacity-20 blur-3xl"
         animate={{
           scale: [1, 1.1, 1],
           opacity: [0.2, 0.3, 0.2],
@@ -143,13 +146,13 @@ const SkillsSection = ({ scrollDirection }) => {
           transition={{ duration: 1, type: "spring" }}
           viewport={{ once: true }}
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-accent via-purple-600 to-pink-600">
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-accent via-slate to-silver">
             Skills & Expertise
           </h2>
           
           {/* Animated underline */}
           <motion.div
-            className="h-1 bg-gradient-to-r from-accent via-purple-500 to-pink-500 rounded-full mx-auto"
+            className="h-1 bg-gradient-to-r from-accent via-slate to-silver rounded-full mx-auto"
             initial={{ width: 0 }}
             whileInView={{ width: '300px' }}
             transition={{ duration: 1.5, delay: 0.5 }}
@@ -174,9 +177,9 @@ const SkillsSection = ({ scrollDirection }) => {
             >
               {/* Skill Card */}
               <motion.div
-                className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-gray-100 relative overflow-hidden"
+                className="bg-slate/20 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-accent/30 relative overflow-hidden"
                 whileHover={{ 
-                  boxShadow: "0 25px 50px rgba(0,0,0,0.15)",
+                  boxShadow: "0 25px 50px rgba(163, 163, 163, 0.2)",
                   transition: { duration: 0.3 }
                 }}
               >
@@ -198,18 +201,18 @@ const SkillsSection = ({ scrollDirection }) => {
                 </motion.div>
 
                 {/* Skill name */}
-                <h3 className="text-xl font-bold text-gray-800 mb-4 text-center">
+                <h3 className="text-xl font-bold text-silver mb-4 text-center">
                   {skill.name}
                 </h3>
 
                 {/* Progress bar */}
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600">Proficiency</span>
+                    <span className="text-sm text-silver/70">Proficiency</span>
                     <span className="text-sm font-bold text-accent">{skill.level}%</span>
                   </div>
                   
-                  <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="w-full h-3 bg-slate/30 rounded-full overflow-hidden">
                     <motion.div
                       className={`h-full bg-gradient-to-r ${skill.color} rounded-full relative`}
                       custom={skill.level}
@@ -274,11 +277,11 @@ const SkillsSection = ({ scrollDirection }) => {
           transition={{ duration: 0.8, delay: 0.5 }}
           viewport={{ once: true }}
         >
-          <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-100">
-            <h3 className="text-2xl font-bold text-gray-800 mb-4">
+          <div className="bg-slate/20 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-accent/30">
+            <h3 className="text-2xl font-bold text-silver mb-4">
               Always Learning & Growing 🚀
             </h3>
-            <p className="text-gray-600 text-lg">
+            <p className="text-silver/80 text-lg">
               I'm constantly expanding my skill set and staying up-to-date with the latest technologies and best practices in software development.
             </p>
           </div>

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import StarfieldBackground from './StarfieldBackground';
 
 const projects = [
   { 
@@ -7,7 +8,7 @@ const projects = [
     description: 'A comprehensive data visualization dashboard for DMA research with real-time analytics and interactive charts.',
     technologies: ['React', 'D3.js', 'Node.js', 'MongoDB'],
     icon: '📊',
-    color: 'from-blue-500 to-cyan-500',
+    color: 'from-accent to-slate',
     link: '#',
     image: '/project1.jpg'
   },
@@ -16,7 +17,7 @@ const projects = [
     description: 'An intelligent movie recommendation system using machine learning algorithms and collaborative filtering.',
     technologies: ['Python', 'TensorFlow', 'Flask', 'PostgreSQL'],
     icon: '🎬',
-    color: 'from-purple-500 to-pink-500',
+    color: 'from-slate to-silver',
     link: '#',
     image: '/project2.jpg'
   },
@@ -25,7 +26,7 @@ const projects = [
     description: 'This stunning portfolio website built with modern technologies and beautiful animations.',
     technologies: ['React', 'Tailwind CSS', 'Framer Motion', 'Vite'],
     icon: '✨',
-    color: 'from-green-500 to-emerald-500',
+    color: 'from-accent to-slate',
     link: '#',
     image: '/project3.jpg'
   },
@@ -34,7 +35,7 @@ const projects = [
     description: 'A conversational AI assistant powered by natural language processing and machine learning.',
     technologies: ['Python', 'OpenAI', 'FastAPI', 'Redis'],
     icon: '🤖',
-    color: 'from-orange-500 to-red-500',
+    color: 'from-slate to-silver',
     link: '#',
     image: '/project4.jpg'
   },
@@ -43,7 +44,7 @@ const projects = [
     description: 'A full-stack e-commerce platform with payment integration and inventory management.',
     technologies: ['React', 'Node.js', 'Stripe', 'MongoDB'],
     icon: '🛒',
-    color: 'from-indigo-500 to-purple-500',
+    color: 'from-accent to-slate',
     link: '#',
     image: '/project5.jpg'
   },
@@ -52,7 +53,7 @@ const projects = [
     description: 'A collaborative task management application with real-time updates and team features.',
     technologies: ['Vue.js', 'Firebase', 'Vuetify', 'PWA'],
     icon: '📋',
-    color: 'from-teal-500 to-blue-500',
+    color: 'from-slate to-silver',
     link: '#',
     image: '/project6.jpg'
   },
@@ -60,23 +61,6 @@ const projects = [
 
 const ProjectsSection = ({ scrollDirection }) => {
   const [hoveredProject, setHoveredProject] = useState(null);
-  const [floatingElements, setFloatingElements] = useState([]);
-
-  useEffect(() => {
-    // Generate floating elements
-    const elements = [];
-    for (let i = 0; i < 25; i++) {
-      elements.push({
-        id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: Math.random() * 3 + 1,
-        delay: Math.random() * 2,
-        duration: 3 + Math.random() * 2
-      });
-    }
-    setFloatingElements(elements);
-  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -110,55 +94,10 @@ const ProjectsSection = ({ scrollDirection }) => {
     }
   };
 
-  const floatingVariants = {
-    animate: (custom) => ({
-      y: [0, -25, 0],
-      x: [0, 10, 0],
-      rotate: [0, 5, 0],
-      scale: [1, 1.1, 1],
-      transition: {
-        duration: custom.duration,
-        repeat: Infinity,
-        delay: custom.delay,
-        ease: "easeInOut"
-      }
-    })
-  };
-
   return (
-    <section id="projects" className="relative py-20 bg-gradient-to-br from-charcoal via-gray-900 to-black overflow-hidden">
-      {/* Background floating elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        {floatingElements.map((element) => (
-          <motion.div
-            key={element.id}
-            className="absolute rounded-full bg-gradient-to-r from-accent to-purple-400 opacity-10"
-            style={{
-              left: `${element.x}%`,
-              top: `${element.y}%`,
-              width: element.size,
-              height: element.size
-            }}
-            custom={element}
-            variants={floatingVariants}
-            animate="animate"
-          />
-        ))}
-      </div>
-
-      {/* Glowing background */}
-      <motion.div
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[800px] rounded-full bg-gradient-to-r from-accent via-purple-500 to-pink-500 opacity-10 blur-3xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.1, 0.15, 0.1],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
+    <section id="projects" className="relative py-20 bg-black overflow-hidden">
+      {/* Starfield background with moving particles */}
+      <StarfieldBackground className="section-background" particleCount={30} />
 
       <motion.div
         className="relative z-10 max-w-7xl mx-auto px-4"
@@ -175,13 +114,13 @@ const ProjectsSection = ({ scrollDirection }) => {
           transition={{ duration: 1, type: "spring" }}
           viewport={{ once: true }}
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-accent via-purple-400 to-pink-400">
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-accent via-slate to-silver">
             Featured Projects
           </h2>
           
           {/* Animated underline */}
           <motion.div
-            className="h-1 bg-gradient-to-r from-accent via-purple-500 to-pink-500 rounded-full mx-auto"
+            className="h-1 bg-gradient-to-r from-accent via-slate to-silver rounded-full mx-auto"
             initial={{ width: 0 }}
             whileInView={{ width: '400px' }}
             transition={{ duration: 1.5, delay: 0.5 }}
@@ -189,9 +128,9 @@ const ProjectsSection = ({ scrollDirection }) => {
           />
           
           <motion.p
-            className="text-xl text-gray-300 mt-6 max-w-2xl mx-auto"
+            className="text-xl text-silver mt-6 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
             viewport={{ once: true }}
           >
@@ -203,7 +142,7 @@ const ProjectsSection = ({ scrollDirection }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <motion.div
-          key={project.title}
+              key={project.title}
               className="relative group"
               variants={projectCardVariants}
               whileHover={{ 
@@ -216,10 +155,10 @@ const ProjectsSection = ({ scrollDirection }) => {
             >
               {/* Project Card */}
               <motion.div
-                className="bg-slate/20 backdrop-blur-sm rounded-2xl p-6 shadow-2xl border border-gray-700 relative overflow-hidden h-full"
+                className="bg-slate/20 backdrop-blur-sm rounded-2xl p-6 shadow-2xl border border-accent/30 relative overflow-hidden h-full"
                 whileHover={{ 
-                  boxShadow: "0 25px 50px rgba(0,0,0,0.3)",
-                  borderColor: "rgba(173, 216, 230, 0.5)",
+                  boxShadow: "0 25px 50px rgba(163, 163, 163, 0.2)",
+                  borderColor: "rgba(163, 163, 163, 0.5)",
                   transition: { duration: 0.3 }
                 }}
               >
@@ -246,7 +185,7 @@ const ProjectsSection = ({ scrollDirection }) => {
                 </h3>
 
                 {/* Project description */}
-                <p className="text-gray-300 mb-6 text-center leading-relaxed">
+                <p className="text-silver mb-6 text-center leading-relaxed">
                   {project.description}
                 </p>
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaUser, FaFileAlt, FaTools, FaProjectDiagram, FaEnvelope, FaHome, FaTwitter, FaLinkedin, FaGithub, FaBars } from 'react-icons/fa';
 
@@ -20,19 +20,32 @@ const socialLinks = [
 const Sidebar = () => {
   const [active, setActive] = useState(null);
   const [open, setOpen] = useState(false);
+  const scrollTimeout = useRef(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
+  // Optimized scroll handler with throttling
+  const handleScroll = useCallback(() => {
+    if (scrollTimeout.current) return; // Throttle scroll events
+    
+    scrollTimeout.current = setTimeout(() => {
       const offsets = navLinks.map(link => {
         const el = document.getElementById(link.id);
         return el ? el.getBoundingClientRect().top : Infinity;
       });
       const activeIndex = offsets.findIndex((top, i) => top > 0 && (i === 0 || offsets[i - 1] <= 0));
       setActive(navLinks[Math.max(0, activeIndex - 1)].id);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+      scrollTimeout.current = null;
+    }, 100); // Less frequent updates for sidebar
   }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeout.current) {
+        clearTimeout(scrollTimeout.current);
+      }
+    };
+  }, [handleScroll]);
 
   const scrollToSection = (id) => {
     const el = document.getElementById(id);

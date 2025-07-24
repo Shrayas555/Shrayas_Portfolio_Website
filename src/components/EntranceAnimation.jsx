@@ -1,352 +1,294 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const EntranceAnimation = ({ onComplete }) => {
-  const [currentPhase, setCurrentPhase] = useState('loading');
-  const [particles, setParticles] = useState([]);
-  const [loadingProgress, setLoadingProgress] = useState(0);
-  const [textRevealed, setTextRevealed] = useState(false);
-  const [explosionActive, setExplosionActive] = useState(false);
-  const animationRef = useRef(null);
+  const [animationPhase, setAnimationPhase] = useState('entrance');
+  const [nameVisible, setNameVisible] = useState(false);
+  const [exitStarted, setExitStarted] = useState(false);
+  const [flickerStarted, setFlickerStarted] = useState(false);
+  const [flickerIndex, setFlickerIndex] = useState(0);
+  const [particlesVisible, setParticlesVisible] = useState(false);
+  const [glowIntensity, setGlowIntensity] = useState(0);
 
-  // Generate particles for the background effect
   useEffect(() => {
-    const generateParticles = () => {
-      const newParticles = [];
-      for (let i = 0; i < 150; i++) {
-        newParticles.push({
-          id: i,
-          x: Math.random() * window.innerWidth,
-          y: Math.random() * window.innerHeight,
-          vx: (Math.random() - 0.5) * 2,
-          vy: (Math.random() - 0.5) * 2,
-          size: Math.random() * 3 + 1,
-          opacity: Math.random() * 0.4 + 0.1,
-          color: `hsl(${Math.random() * 60 + 200}, 80%, 70%)`,
-          pulse: Math.random() * 2 + 1
-        });
-      }
-      setParticles(newParticles);
-    };
+    document.body.style.overflow = 'hidden';
 
-    generateParticles();
-  }, []);
-
-  // Animate particles
-  useEffect(() => {
-    const animateParticles = () => {
-      setParticles(prevParticles => 
-        prevParticles.map(particle => ({
-          ...particle,
-          x: particle.x + particle.vx,
-          y: particle.y + particle.vy,
-          opacity: particle.opacity + Math.sin(Date.now() * 0.001 * particle.pulse) * 0.05,
-          vx: particle.vx + (Math.random() - 0.5) * 0.02,
-          vy: particle.vy + (Math.random() - 0.5) * 0.02
-        }))
-      );
-    };
-
-    animationRef.current = setInterval(animateParticles, 50);
-    return () => clearInterval(animationRef.current);
-  }, []);
-
-  // Animation sequence
-  useEffect(() => {
     const sequence = async () => {
-      // Phase 1: Loading (3 seconds)
-      await new Promise(resolve => {
-        const timer = setInterval(() => {
-          setLoadingProgress(prev => {
-            if (prev >= 100) {
-              clearInterval(timer);
-              resolve();
-              return 100;
-            }
-            return prev + Math.random() * 20 + 10;
-          });
-        }, 100);
-      });
+      // Initial pause for dramatic effect
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      // Start particle system - keep visible throughout entire animation
+      setParticlesVisible(true);
+      await new Promise(resolve => setTimeout(resolve, 300));
+      
+      // Begin name animation
+      setNameVisible(true);
+      await new Promise(resolve => setTimeout(resolve, 400));
 
-      // Phase 2: Text reveal (2 seconds)
-      setCurrentPhase('revealing');
-      setTextRevealed(true);
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Start flickering when S appears
+      await new Promise(resolve => setTimeout(resolve, 0 * 80 + 400));
+      setFlickerStarted(true);
 
-      // Phase 3: Explosion effect (1 second)
-      setCurrentPhase('exploding');
-      setExplosionActive(true);
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Progress flickering through each letter
+      const nameLength = 12;
+      for (let i = 0; i < nameLength; i++) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+        setFlickerIndex(i);
+      }
 
-      // Phase 4: Transition to main site
-      setCurrentPhase('transitioning');
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Intensify glow effect
+      setGlowIntensity(1);
+      await new Promise(resolve => setTimeout(resolve, 300));
+      
+      // Start sequential letter fade-out with enhanced effects
+      setExitStarted(true);
+      for (let i = 0; i < nameLength; i++) {
+        await new Promise(resolve => setTimeout(resolve, 60)); // Faster sequential exit
+        setFlickerIndex(nameLength - 1 - i); // Reverse for exit
+      }
+      
+      // Dramatic final moment
+      await new Promise(resolve => setTimeout(resolve, 200));
+      
+      // Smooth transition to main content
+      document.body.style.overflow = 'unset';
       onComplete();
     };
 
     sequence();
+    return () => { document.body.style.overflow = 'unset'; };
   }, [onComplete]);
 
   const containerVariants = {
-    loading: { opacity: 1 },
-    revealing: { opacity: 1 },
-    exploding: { opacity: 1 },
-    transitioning: { 
-      opacity: 0,
-      transition: { duration: 1.5, ease: "easeInOut" }
+    entrance: { 
+      opacity: 1, 
+      transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }
     }
   };
 
-  const textVariants = {
+  const letterVariants = {
     hidden: { 
       opacity: 0, 
-      y: 100, 
+      y: 50, 
       scale: 0.8,
-      filter: 'blur(20px)'
+      rotateX: -90,
+      filter: 'blur(10px)'
     },
-    visible: { 
+    visible: (i) => ({
       opacity: 1, 
       y: 0, 
       scale: 1,
+      rotateX: 0,
       filter: 'blur(0px)',
       transition: { 
-        duration: 2, 
+        duration: 0.8, 
+        delay: i * 0.08, 
+        ease: [0.25, 0.46, 0.45, 0.94],
         type: "spring",
-        stiffness: 50,
-        damping: 20
+        stiffness: 100,
+        damping: 15
       }
+    }),
+    exit: (i) => ({
+      opacity: 0,
+      y: -50,
+      scale: 1.2,
+      rotateX: 90,
+      filter: 'blur(15px)',
+      transition: { 
+        duration: 0.6, 
+        delay: i * 0.06,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
+    })
+  };
+
+  const flickerVariants = {
+    hidden: { opacity: 0 },
+    flickering: {
+      opacity: [1, 0.3, 1, 0.7, 1, 0.4, 1, 0.8, 1, 0.5, 1, 0.9, 1],
+      scale: [1, 1.05, 1, 0.98, 1, 1.02, 1, 0.99, 1, 1.01, 1, 0.995, 1],
+      filter: [
+        'blur(0px)',
+        'blur(1px)',
+        'blur(0px)',
+        'blur(0.5px)',
+        'blur(0px)',
+        'blur(0.8px)',
+        'blur(0px)',
+        'blur(0.3px)',
+        'blur(0px)',
+        'blur(0.6px)',
+        'blur(0px)',
+        'blur(0.2px)',
+        'blur(0px)'
+      ],
+      transition: {
+        duration: 1.5,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }
+    },
+    settled: { 
+      opacity: 1, 
+      scale: 1,
+      filter: 'blur(0px)',
+      transition: { duration: 0.3, ease: "easeOut" }
     }
   };
 
-  const glowVariants = {
-    hidden: { opacity: 0, scale: 0.5 },
-    visible: { 
-      opacity: 1, 
-      scale: 1,
-      transition: { 
+  const particleVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: [0, 1, 0],
+      scale: [0, 1, 0],
+      transition: {
         duration: 2,
         repeat: Infinity,
-        repeatType: "reverse",
         ease: "easeInOut"
       }
     }
   };
 
-  const particleVariants = {
-    hidden: { opacity: 0, scale: 0 },
-    visible: { 
-      opacity: 1, 
-      scale: 1,
-      transition: { 
-        duration: 1,
-        delay: Math.random() * 0.5
-      }
-    }
-  };
-
-  const explosionVariants = {
-    hidden: { scale: 0, opacity: 0 },
-    visible: { 
-      scale: 1, 
-      opacity: 1,
-      transition: { 
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  };
+  const name = "SHRAYAS RAJU";
 
   return (
-    <motion.div
-      className="fixed inset-0 bg-black z-50 flex items-center justify-center overflow-hidden"
-      variants={containerVariants}
-      animate={currentPhase}
-    >
-      {/* Animated background particles */}
-      <div className="absolute inset-0">
-        {particles.map((particle) => (
-          <motion.div
-            key={particle.id}
-            className="absolute rounded-full"
-            style={{
-              left: particle.x,
-              top: particle.y,
-              width: particle.size,
-              height: particle.size,
-              backgroundColor: particle.color,
-              opacity: particle.opacity,
-              filter: 'blur(1px)',
-              boxShadow: `0 0 ${particle.size * 2}px ${particle.color}`
-            }}
-            variants={particleVariants}
-            initial="hidden"
-            animate="visible"
-          />
-        ))}
-      </div>
-
-      {/* Central content */}
-      <div className="relative z-10 text-center">
-        {/* Glowing orb effect */}
-        <motion.div
-          className="absolute inset-0 flex items-center justify-center"
-          variants={glowVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <div className="w-[600px] h-[600px] rounded-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 opacity-20 blur-3xl" />
-          <div className="w-[400px] h-[400px] rounded-full bg-gradient-to-r from-cyan-600 to-blue-600 opacity-30 blur-2xl absolute" />
-        </motion.div>
-
-        {/* Main content */}
-        <motion.div
-          variants={textVariants}
-          initial="hidden"
-          animate={textRevealed ? "visible" : "hidden"}
-          className="relative z-20"
-        >
-          <div className="text-8xl mb-6 opacity-60">
-            👨‍💻
+    <AnimatePresence mode="wait">
+      <motion.div
+        key="entrance"
+        className="fixed inset-0 bg-gradient-to-br from-black via-gray-900 to-black z-50 flex items-center justify-center overflow-hidden"
+        variants={containerVariants}
+        initial="entrance"
+        animate="entrance"
+        style={{
+          background: `radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, transparent 70%), 
+                       linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%)`
+        }}
+      >
+        {/* Animated background particles - always visible during entrance */}
+        {particlesVisible && (
+          <div className="absolute inset-0 pointer-events-none">
+            {[...Array(50)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-white rounded-full"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+                variants={particleVariants}
+                initial="hidden"
+                animate="visible"
+                transition={{
+                  delay: Math.random() * 2,
+                  duration: 2 + Math.random() * 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+            ))}
           </div>
-          <h1 className="text-8xl md:text-9xl lg:text-[12rem] font-bold text-white mb-6 tracking-tight font-mono">
-            SHRayas
-          </h1>
-          <p className="text-2xl md:text-3xl lg:text-4xl text-gray-300 font-light font-mono mb-8">
-            Software Engineer
-          </p>
-          <p className="text-lg md:text-xl text-gray-400 font-mono">
-            Crafting Digital Experiences
-          </p>
-        </motion.div>
-
-        {/* Loading bar - only show during loading phase */}
-        {currentPhase === 'loading' && (
-          <motion.div 
-            className="absolute bottom-32 left-1/2 transform -translate-x-1/2 w-96 h-3 bg-gray-800 rounded-full overflow-hidden"
-            initial={{ opacity: 0, scaleX: 0 }}
-            animate={{ opacity: 1, scaleX: 1 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-          >
-            <motion.div
-              className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full animate-data-stream"
-              initial={{ width: 0 }}
-              animate={{ width: `${loadingProgress}%` }}
-              transition={{ duration: 0.3 }}
-            />
-          </motion.div>
         )}
 
-        {/* Status text */}
-        {currentPhase === 'loading' && (
+        {/* Dynamic glow effect */}
+        <motion.div
+          className="absolute inset-0 pointer-events-none"
+          animate={{
+            background: `radial-gradient(circle at center, 
+                         rgba(255,255,255,${0.1 + glowIntensity * 0.2}) 0%, 
+                         transparent 60%)`
+          }}
+          transition={{ duration: 1, ease: "easeInOut" }}
+        />
+
+        <div className="relative z-10 text-center">
           <motion.div
-            className="absolute bottom-20 left-1/2 transform -translate-x-1/2 text-gray-400 font-mono text-lg"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
+            className="relative"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            {loadingProgress < 100 ? `Initializing... ${Math.round(loadingProgress)}%` : 'System Ready'}
+            <h1 
+              className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-white tracking-[0.2em] font-mono relative"
+              style={{
+                fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace',
+                letterSpacing: '0.2em',
+                textShadow: `
+                  0 0 20px rgba(255,255,255,0.5),
+                  0 0 40px rgba(255,255,255,0.3),
+                  0 0 60px rgba(255,255,255,0.2),
+                  0 0 80px rgba(255,255,255,0.1)
+                `
+              }}
+            >
+              {name.split('').map((letter, index) => (
+                <motion.span
+                  key={index}
+                  custom={index}
+                  variants={letterVariants}
+                  initial="hidden"
+                  animate={
+                    exitStarted 
+                      ? "exit" 
+                      : nameVisible 
+                        ? "visible" 
+                        : "hidden"
+                  }
+                  className={`inline-block relative ${
+                    letter === ' ' ? 'mx-6 md:mx-8 lg:mx-10' : ''
+                  }`}
+                  style={{
+                    transformStyle: 'preserve-3d',
+                    perspective: '1000px'
+                  }}
+                >
+                  <motion.span
+                    variants={flickerVariants}
+                    initial="hidden"
+                    animate={
+                      nameVisible && flickerStarted && index <= flickerIndex && !exitStarted
+                        ? "flickering"
+                        : nameVisible && !exitStarted
+                          ? "settled" 
+                          : "hidden"
+                    }
+                    className="inline-block relative"
+                    style={{
+                      textShadow: `
+                        0 0 10px rgba(255,255,255,0.8),
+                        0 0 20px rgba(255,255,255,0.6),
+                        0 0 30px rgba(255,255,255,0.4)
+                      `
+                    }}
+                  >
+                    {letter}
+                  </motion.span>
+                  
+                  {/* Letter glow effect */}
+                  <motion.div
+                    className="absolute inset-0 -z-10"
+                    animate={{
+                      opacity: [0, 0.5, 0],
+                      scale: [0.8, 1.2, 0.8],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      delay: index * 0.1,
+                      ease: "easeInOut"
+                    }}
+                    style={{
+                      background: `radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%)`,
+                      filter: 'blur(20px)'
+                    }}
+                  />
+                </motion.span>
+              ))}
+            </h1>
           </motion.div>
-        )}
-
-        {/* Explosion effect */}
-        {explosionActive && (
-          <motion.div
-            className="absolute inset-0 flex items-center justify-center"
-            variants={explosionVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <div className="w-full h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-30 blur-3xl" />
-            <div className="absolute text-6xl text-white font-bold">
-              WELCOME
-            </div>
-          </motion.div>
-        )}
-
-        {/* Floating elements */}
-        <motion.div
-          className="absolute top-20 right-20 text-6xl opacity-30"
-          animate={{ 
-            y: [0, -30, 0],
-            rotate: [0, 10, 0],
-            scale: [1, 1.1, 1]
-          }}
-          transition={{ 
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        >
-          ⚡
-        </motion.div>
-        <motion.div
-          className="absolute bottom-20 left-20 text-6xl opacity-30"
-          animate={{ 
-            y: [0, 30, 0],
-            rotate: [0, -10, 0],
-            scale: [1, 1.1, 1]
-          }}
-          transition={{ 
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
-          }}
-        >
-          🚀
-        </motion.div>
-        <motion.div
-          className="absolute top-1/2 left-10 text-4xl opacity-30"
-          animate={{ 
-            x: [0, 15, 0],
-            rotate: [0, 15, 0],
-            scale: [1, 1.2, 1]
-          }}
-          transition={{ 
-            duration: 4.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 0.5
-          }}
-        >
-          💻
-        </motion.div>
-        <motion.div
-          className="absolute top-1/3 right-10 text-4xl opacity-30"
-          animate={{ 
-            x: [0, -15, 0],
-            rotate: [0, -15, 0],
-            scale: [1, 1.2, 1]
-          }}
-          transition={{ 
-            duration: 3.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1.5
-          }}
-        >
-          🎯
-        </motion.div>
-      </div>
-
-      {/* Grid overlay */}
-      <div className="absolute inset-0 opacity-10">
-        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
-              <path d="M 80 0 L 0 0 0 80" fill="none" stroke="white" strokeWidth="0.5" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#grid)" />
-        </svg>
-      </div>
-
-      {/* Scan lines effect */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="w-full h-1 bg-gradient-to-r from-transparent via-white to-transparent animate-scanline" />
-        <div className="w-full h-1 bg-gradient-to-r from-transparent via-blue-400 to-transparent animate-scanline" style={{ animationDelay: '1s' }} />
-      </div>
-    </motion.div>
+        </div>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 
