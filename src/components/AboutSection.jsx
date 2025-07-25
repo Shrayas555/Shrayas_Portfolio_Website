@@ -160,7 +160,7 @@ const AboutSection = ({ scrollDirection }) => {
           >
             <div className="relative p-2 rounded-2xl overflow-hidden animate-glow-border-gradient">
               <img
-                src="/profile_2.png"
+                src="/profile.png"
                 alt="Shrayas Raju"
                 className="w-full h-auto rounded-xl shadow-2xl"
               />
