@@ -147,52 +147,14 @@ const AboutSection = ({ scrollDirection }) => {
 
         {/* Main content */}
         <motion.div
-          className="grid md:grid-cols-2 gap-12 items-center"
+          className="max-w-4xl mx-auto"
           variants={itemVariants}
         >
-          {/* Left side - Image */}
-          <motion.div
-            className="relative"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, type: "spring" }}
-            viewport={{ once: true }}
-          >
-            <div className="relative p-2 rounded-2xl overflow-hidden animate-glow-border-gradient">
-              <img
-                src="/profile.png"
-                alt="Shrayas Raju"
-                className="w-full h-auto rounded-xl shadow-2xl"
-              />
-            </div>
-            
-            {/* Floating badges */}
-            <motion.div
-              className="absolute -top-4 -right-4 bg-gradient-to-r from-accent to-slate text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg"
-              initial={{ scale: 0, rotate: -180 }}
-              whileInView={{ scale: 1, rotate: 0 }}
-              transition={{ duration: 0.8, delay: 0.5, type: "spring" }}
-              viewport={{ once: true }}
-            >
-              👨‍💻 Developer
-            </motion.div>
-            
-            <motion.div
-              className="absolute -bottom-4 -left-4 bg-gradient-to-r from-slate to-silver text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg"
-              initial={{ scale: 0, rotate: 180 }}
-              whileInView={{ scale: 1, rotate: 0 }}
-              transition={{ duration: 0.8, delay: 0.7, type: "spring" }}
-              viewport={{ once: true }}
-            >
-              🚀 Innovator
-            </motion.div>
-          </motion.div>
-
-          {/* Right side - Text */}
+          {/* Text content - now full width */}
           <motion.div
             className="space-y-6"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, type: "spring" }}
             viewport={{ once: true }}
           >
@@ -227,7 +189,7 @@ const AboutSection = ({ scrollDirection }) => {
 
             {/* Skills preview */}
             <motion.div
-              className="flex flex-wrap gap-3"
+              className="flex flex-wrap gap-3 justify-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}

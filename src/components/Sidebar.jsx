@@ -28,11 +28,17 @@ const Sidebar = () => {
     
     scrollTimeout.current = setTimeout(() => {
       const offsets = navLinks.map(link => {
+        // Skip resume section since it's not in the DOM
+        if (link.id === 'resume') return Infinity;
         const el = document.getElementById(link.id);
         return el ? el.getBoundingClientRect().top : Infinity;
       });
       const activeIndex = offsets.findIndex((top, i) => top > 0 && (i === 0 || offsets[i - 1] <= 0));
-      setActive(navLinks[Math.max(0, activeIndex - 1)].id);
+      const activeId = navLinks[Math.max(0, activeIndex - 1)].id;
+      // Don't set resume as active since it's not a scrollable section
+      if (activeId !== 'resume') {
+        setActive(activeId);
+      }
       scrollTimeout.current = null;
     }, 100); // Less frequent updates for sidebar
   }, []);
@@ -48,11 +54,22 @@ const Sidebar = () => {
   }, [handleScroll]);
 
   const scrollToSection = (id) => {
-    const el = document.getElementById(id);
-    if (el) {
-      setActive(id);
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (id === 'resume') {
+      // Download resume instead of scrolling
+      const link = document.createElement('a');
+      link.href = '/Shrayas_resume.pdf';
+      link.download = 'Shrayas_resume.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
       setOpen(false);
+    } else {
+      const el = document.getElementById(id);
+      if (el) {
+        setActive(id);
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setOpen(false);
+      }
     }
   };
 

@@ -2,7 +2,7 @@ import './index.css';
 import Sidebar from './components/Sidebar';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
-import ResumeSection from './components/ResumeSection';
+
 import SkillsSection from './components/SkillsSection';
 import ProjectsSection from './components/ProjectsSection';
 import ContactSection from './components/ContactSection';
@@ -182,7 +182,6 @@ function App() {
               >
                 <section id="hero"><HeroSection /></section>
                 <AboutSection scrollDirection={scrollDirection} />
-                <ResumeSection scrollDirection={scrollDirection} />
                 <SkillsSection scrollDirection={scrollDirection} />
                 <ProjectsSection scrollDirection={scrollDirection} />
                 <ContactSection scrollDirection={scrollDirection} />
