@@ -9,34 +9,54 @@ const JourneySection = () => {
   const journeyData = [
     {
       id: 1,
-      title: "Software Developer",
-      company: "DataVis Lab, Clemson University",
-      period: "2024 - Present",
+      title: "Graduate Research Assistant – Software Developer",
+      company: "DataVis Lab, Clemson University, SC, USA",
+      period: "2025 - Present",
       description: "Working on the CDC-funded DMA‑PRIME project, developing large-scale public health dashboards for disease outbreak tracking across South Carolina. Contributing to data visualization and software development initiatives.",
       side: "left"
     },
     {
       id: 2,
       title: "MS in Computer Science",
-      company: "Clemson University",
-      period: "2024 - Present",
+      company: "Clemson University, SC, USA",
+      period: "2024 - 2026",
       description: "Pursuing advanced studies in Computer Science with focus on AI, Machine Learning, and Data Science. Working on cutting-edge research projects and developing innovative solutions.",
+      grade: "Grade: 4.0 / 4.0",
       side: "right"
     },
     {
       id: 3,
-      title: "Software Engineer",
-      company: "Previous Experience",
-      period: "2022 - 2024",
-      description: "Developed full-stack applications, worked with modern frameworks, and contributed to scalable software solutions. Gained expertise in React, Node.js, and cloud technologies.",
+      title: "B-Tech Information Technology",
+      company: "Easwari Engineering College, Chennai, India",
+      period: "2020 - 2024",
+      description: "Completed undergraduate studies in Information Technology, building strong foundation in programming, algorithms, and software development principles.",
+      grade: "Grade: 8.75 / 10",
       side: "left"
     },
     {
       id: 4,
-      title: "Bachelor's Degree",
-      company: "Computer Science",
-      period: "2018 - 2022",
-      description: "Completed undergraduate studies in Computer Science, building strong foundation in programming, algorithms, and software development principles.",
+      title: "Data Science Intern",
+      company: "CodeClause, Pune, India",
+      period: "2022 - 2022",
+      description: "Led a customer segmentation project using data analysis to generate strategic insights and improve engagement. Gained hands-on experience in solving business problems through applied machine learning and data-driven thinking.",
+      side: "right"
+    },
+    {
+      id: 5,
+      title: "12th Grade - CBSE - HSC",
+      company: "National Public School, Chennai , India",
+      period: "2019 - 2020",
+      description: "Completed higher secondary education with Computer Science specialization, developing strong analytical and problem-solving skills.",
+      grade: "Grade: 91.8%",
+      side: "left"
+    },
+    {
+      id: 6,
+      title: "10th Grade - SSLC",
+      company: "Lady Andal & Sir Mutha Schools (MSS), Chennai, India",
+      period: "2017 - 2018",
+      description: "Completed secondary school education, establishing strong academic foundation and developing critical thinking abilities.",
+      grade: "Grade: 82%",
       side: "right"
     }
   ];
@@ -191,9 +211,16 @@ const JourneySection = () => {
                     </p>
                     
                     {/* Period */}
-                    <p className="text-sm text-slate mb-4 font-medium">
+                    <p className="text-sm text-silver mb-1 font-medium">
                       {item.period}
                     </p>
+                    
+                    {/* Grade */}
+                    {item.grade && (
+                      <p className="text-sm text-accent mb-4 font-semibold">
+                        {item.grade}
+                      </p>
+                    )}
                     
                     {/* Description */}
                     <p className="text-silver leading-relaxed">
