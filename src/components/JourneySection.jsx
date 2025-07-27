@@ -9,34 +9,34 @@ const JourneySection = () => {
   const journeyData = [
     {
       id: 1,
-      title: "MS in Computer Science",
-      company: "Clemson University",
+      title: "Software Developer",
+      company: "DataVis Lab, Clemson University",
       period: "2024 - Present",
-      description: "Pursuing advanced studies in Computer Science with focus on AI, Machine Learning, and Data Science. Working on cutting-edge research projects and developing innovative solutions.",
+      description: "Working on the CDC-funded DMA‑PRIME project, developing large-scale public health dashboards for disease outbreak tracking across South Carolina. Contributing to data visualization and software development initiatives.",
       side: "left"
     },
     {
       id: 2,
-      title: "Software Engineer",
-      company: "Previous Experience",
-      period: "2022 - 2024",
-      description: "Developed full-stack applications, worked with modern frameworks, and contributed to scalable software solutions. Gained expertise in React, Node.js, and cloud technologies.",
+      title: "MS in Computer Science",
+      company: "Clemson University",
+      period: "2024 - Present",
+      description: "Pursuing advanced studies in Computer Science with focus on AI, Machine Learning, and Data Science. Working on cutting-edge research projects and developing innovative solutions.",
       side: "right"
     },
     {
       id: 3,
-      title: "Bachelor's Degree",
-      company: "Computer Science",
-      period: "2018 - 2022",
-      description: "Completed undergraduate studies in Computer Science, building strong foundation in programming, algorithms, and software development principles.",
+      title: "Software Engineer",
+      company: "Previous Experience",
+      period: "2022 - 2024",
+      description: "Developed full-stack applications, worked with modern frameworks, and contributed to scalable software solutions. Gained expertise in React, Node.js, and cloud technologies.",
       side: "left"
     },
     {
       id: 4,
-      title: "Open Source Contributor",
-      company: "Community Projects",
-      period: "2020 - Present",
-      description: "Actively contributing to open-source projects, sharing knowledge with the developer community, and building innovative solutions for real-world problems.",
+      title: "Bachelor's Degree",
+      company: "Computer Science",
+      period: "2018 - 2022",
+      description: "Completed undergraduate studies in Computer Science, building strong foundation in programming, algorithms, and software development principles.",
       side: "right"
     }
   ];

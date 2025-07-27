@@ -174,7 +174,7 @@ const AboutSection = ({ scrollDirection }) => {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                Hi! I'm <span className="font-bold text-accent">Shrayas Srinivasan</span>, a passionate Computer Science graduate student at Clemson University. I'm deeply fascinated by the intersection of artificial intelligence, data science, and creative software engineering.
+                I'm <span className="font-bold text-accent">Shrayas Raju</span>, a passionate software developer, machine learning enthusiast, and Computer Science Master's student at Clemson University.
               </motion.p>
               
               <motion.p
@@ -184,93 +184,72 @@ const AboutSection = ({ scrollDirection }) => {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 viewport={{ once: true }}
               >
-                I love transforming complex problems into elegant, user-friendly solutions. My approach combines technical expertise with creative thinking, always focusing on building applications that not only work flawlessly but also provide an exceptional user experience.
+                I specialize in building reliable, scalable, and user-focused systems — with experience spanning full-stack development, data science, data visualization, and applied machine learning. I enjoy taking ideas from concept to deployment, turning complex problems into clean, thoughtful solutions.
+              </motion.p>
+
+              <motion.p
+                className="text-lg md:text-xl text-silver leading-relaxed mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                viewport={{ once: true }}
+              >
+                Currently, I work as a <span className="font-bold text-accent">Graduate Research Assistant</span> in the <span className="font-bold text-accent">DataVis Lab</span>, where I contribute to real-world research through impactful software. One of my core projects is the <span className="font-bold text-accent">CDC-funded DMA‑PRIME dashboard</span>, a public health tool used across South Carolina to support outbreak detection and decision-making.
               </motion.p>
 
               <motion.p
                 className="text-lg md:text-xl text-silver leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
                 viewport={{ once: true }}
               >
-                When I'm not immersed in code, you'll find me exploring the latest technologies, contributing to open-source projects, or sharing knowledge with the developer community. I believe in continuous learning and pushing the boundaries of what's possible in software development.
+                I'm driven by curiosity, creativity, and a love for learning. I'm also someone who enjoys being adventurous — whether it's exploring nature, dancing, traveling, or diving into the latest in tech and AI. I'm always looking to grow — as a developer, a teammate, and a problem-solver.
               </motion.p>
             </motion.div>
 
-            {/* What I Do Section */}
+            {/* Lab Affiliation Showcase */}
             <motion.div
-              className="grid md:grid-cols-2 gap-6"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              viewport={{ once: true }}
+              className="bg-gradient-to-r from-accent/10 to-slate/10 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-accent/30"
+              whileHover={{ 
+                scale: 1.02,
+                boxShadow: "0 20px 40px rgba(163, 163, 163, 0.3)",
+                transition: { duration: 0.3 }
+              }}
             >
-              {/* Technical Focus */}
-              <motion.div
-                className="bg-slate/15 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-accent/20"
-                whileHover={{ 
-                  scale: 1.02,
-                  borderColor: 'rgba(163, 163, 163, 0.5)',
-                  transition: { duration: 0.3 }
-                }}
-              >
-                <h3 className="text-xl font-bold text-accent mb-4">Technical Focus</h3>
-                <ul className="text-silver space-y-2 text-left">
-                  <li>• Full-Stack Web Development</li>
-                  <li>• AI & Machine Learning Applications</li>
-                  <li>• Data Science & Analytics</li>
-                  <li>• Cloud Computing & DevOps</li>
-                  <li>• Mobile App Development</li>
-                </ul>
-              </motion.div>
-
-              {/* What Drives Me */}
-              <motion.div
-                className="bg-slate/15 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-accent/20"
-                whileHover={{ 
-                  scale: 1.02,
-                  borderColor: 'rgba(163, 163, 163, 0.5)',
-                  transition: { duration: 0.3 }
-                }}
-              >
-                <h3 className="text-xl font-bold text-accent mb-4">What Drives Me</h3>
-                <ul className="text-silver space-y-2 text-left">
-                  <li>• Innovation & Problem Solving</li>
-                  <li>• User-Centered Design</li>
-                  <li>• Performance & Scalability</li>
-                  <li>• Clean, Maintainable Code</li>
-                  <li>• Continuous Learning</li>
-                </ul>
-              </motion.div>
+              <div className="flex flex-col md:flex-row items-center gap-6">
+                <div className="flex-1">
+                  <h3 className="text-2xl font-bold text-accent mb-3">Research Lab Affiliation</h3>
+                  <p className="text-silver mb-4">
+                    I'm proud to be part of the <span className="font-semibold text-accent">DataVis Lab</span> at Clemson University, 
+                    where I contribute to cutting-edge research in data visualization and public health technology.
+                  </p>
+                  <div className="text-sm text-silver">
+                    <div>
+                      <span className="font-semibold text-accent">Lab:</span> DataVis Lab, Clemson University
+                    </div>
+                    <div>
+                      <span className="font-semibold text-accent">Role:</span> Graduate Research Assistant – Software Developer
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col items-center gap-3">
+                  <a 
+                    href="https://davislab.github.io/index.html" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-gradient-to-r from-accent to-slate text-white px-6 py-3 rounded-lg hover:scale-105 transition-all duration-200 shadow-lg font-medium"
+                  >
+                    <span>Visit Lab Website</span>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
             </motion.div>
 
-            {/* Skills preview */}
-            <motion.div
-              className="flex flex-wrap gap-3 justify-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.0 }}
-              viewport={{ once: true }}
-            >
-              {['React', 'Node.js', 'Python', 'AI/ML', 'Data Science', 'TypeScript', 'AWS', 'Docker'].map((skill, index) => (
-                <motion.span
-                  key={skill}
-                  className="bg-gradient-to-r from-accent to-slate text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg"
-                  initial={{ scale: 0, rotate: -180 }}
-                  whileInView={{ scale: 1, rotate: 0 }}
-                  transition={{ duration: 0.5, delay: 1.2 + index * 0.1, type: "spring" }}
-                  viewport={{ once: true }}
-                  whileHover={{ 
-                    scale: 1.1,
-                    rotate: 5,
-                    transition: { duration: 0.2 }
-                  }}
-                >
-                  {skill}
-                </motion.span>
-              ))}
-            </motion.div>
+
           </motion.div>
         </motion.div>
       </motion.div>
