@@ -260,14 +260,17 @@ const HeroSection = () => {
               <div className="relative z-10 flex items-center">
                 <TypeAnimation
                   sequence={[
-                    'Aspiring Software Engineer',
-                    2000,
-                    'Passionate about AI',
-                    2000,
-                    'Creative Developer',
-                    2000,
-                    'Data Enthusiast',
-                    2000,
+                    'Aspiring Software Developer',
+                    1000,
+                    'Passionate about AI & ML',
+                    1000,
+                    'Always Learning, Always Building',
+                    1000,
+                    'Data Science Enthusiast',
+                    1000,
+                    'Full-Stack Developer',
+                    1000,
+                    
                   ]}
                   wrapper="span"
                   speed={90}
@@ -350,7 +353,7 @@ const HeroSection = () => {
             
             <div className="relative z-10 flex items-center justify-center">
               <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-semibold text-white">
-                MS in Computer Science @ Clemson University
+              Graduate Research Assistant – Software Developer @ Clemson University
               </h2>
             </div>
           </motion.div>
@@ -377,8 +380,9 @@ const HeroSection = () => {
             />
             <div className="relative z-10">
               <AnimatedText
-                text="Aspiring Software Engineer | Passionate about AI, Data, and Creative Development"
+                text="MS in Computer Science @ Clemson University | Full-Stack Developer | AI | ML | Data Science"
                 className="text-sm sm:text-base md:text-lg lg:text-xl text-silver max-w-2xl leading-relaxed"
+                byChar={true}
                 style={{
                   textShadow: '0 0 8px rgba(206, 212, 218, 0.2)',
                 }}
