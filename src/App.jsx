@@ -181,11 +181,13 @@ function App() {
                 }}
               >
                 <section id="hero"><HeroSection /></section>
-                <AboutSection scrollDirection={scrollDirection} />
-                <JourneySection />
-                <SkillsSection scrollDirection={scrollDirection} />
-                <ProjectsSection scrollDirection={scrollDirection} />
-                <ContactSection scrollDirection={scrollDirection} />
+                <div className="pl-4 md:pl-6 lg:pl-8">
+                  <AboutSection scrollDirection={scrollDirection} />
+                  <JourneySection />
+                  <SkillsSection scrollDirection={scrollDirection} />
+                  <ProjectsSection scrollDirection={scrollDirection} />
+                  <ContactSection scrollDirection={scrollDirection} />
+                </div>
               </motion.div>
             </motion.main>
           </motion.div>
