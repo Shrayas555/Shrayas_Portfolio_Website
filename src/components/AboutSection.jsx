@@ -147,17 +147,18 @@ const AboutSection = ({ scrollDirection }) => {
 
         {/* Main content */}
         <motion.div
-          className="max-w-4xl mx-auto"
+          className="max-w-5xl mx-auto"
           variants={itemVariants}
         >
           {/* Text content - now full width */}
           <motion.div
-            className="space-y-6"
+            className="space-y-8"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, type: "spring" }}
             viewport={{ once: true }}
           >
+            {/* Main About Card */}
             <motion.div
               className="bg-slate/20 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-accent/30"
               whileHover={{ 
@@ -173,7 +174,7 @@ const AboutSection = ({ scrollDirection }) => {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                Hi! I'm <span className="font-bold text-accent">Shrayas Srinivasan</span>, currently pursuing my MS in Computer Science at Clemson University. I'm passionate about AI, Data, and Creative Software Engineering.
+                Hi! I'm <span className="font-bold text-accent">Shrayas Srinivasan</span>, a passionate Computer Science graduate student at Clemson University. I'm deeply fascinated by the intersection of artificial intelligence, data science, and creative software engineering.
               </motion.p>
               
               <motion.p
@@ -183,8 +184,65 @@ const AboutSection = ({ scrollDirection }) => {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 viewport={{ once: true }}
               >
-                I love turning complex problems into simple, beautiful, and intuitive solutions. When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community.
+                I love transforming complex problems into elegant, user-friendly solutions. My approach combines technical expertise with creative thinking, always focusing on building applications that not only work flawlessly but also provide an exceptional user experience.
               </motion.p>
+
+              <motion.p
+                className="text-lg md:text-xl text-silver leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                viewport={{ once: true }}
+              >
+                When I'm not immersed in code, you'll find me exploring the latest technologies, contributing to open-source projects, or sharing knowledge with the developer community. I believe in continuous learning and pushing the boundaries of what's possible in software development.
+              </motion.p>
+            </motion.div>
+
+            {/* What I Do Section */}
+            <motion.div
+              className="grid md:grid-cols-2 gap-6"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              viewport={{ once: true }}
+            >
+              {/* Technical Focus */}
+              <motion.div
+                className="bg-slate/15 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-accent/20"
+                whileHover={{ 
+                  scale: 1.02,
+                  borderColor: 'rgba(163, 163, 163, 0.5)',
+                  transition: { duration: 0.3 }
+                }}
+              >
+                <h3 className="text-xl font-bold text-accent mb-4">Technical Focus</h3>
+                <ul className="text-silver space-y-2 text-left">
+                  <li>• Full-Stack Web Development</li>
+                  <li>• AI & Machine Learning Applications</li>
+                  <li>• Data Science & Analytics</li>
+                  <li>• Cloud Computing & DevOps</li>
+                  <li>• Mobile App Development</li>
+                </ul>
+              </motion.div>
+
+              {/* What Drives Me */}
+              <motion.div
+                className="bg-slate/15 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-accent/20"
+                whileHover={{ 
+                  scale: 1.02,
+                  borderColor: 'rgba(163, 163, 163, 0.5)',
+                  transition: { duration: 0.3 }
+                }}
+              >
+                <h3 className="text-xl font-bold text-accent mb-4">What Drives Me</h3>
+                <ul className="text-silver space-y-2 text-left">
+                  <li>• Innovation & Problem Solving</li>
+                  <li>• User-Centered Design</li>
+                  <li>• Performance & Scalability</li>
+                  <li>• Clean, Maintainable Code</li>
+                  <li>• Continuous Learning</li>
+                </ul>
+              </motion.div>
             </motion.div>
 
             {/* Skills preview */}
@@ -192,16 +250,16 @@ const AboutSection = ({ scrollDirection }) => {
               className="flex flex-wrap gap-3 justify-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              transition={{ duration: 0.8, delay: 1.0 }}
               viewport={{ once: true }}
             >
-              {['React', 'Node.js', 'Python', 'AI/ML', 'Data Science'].map((skill, index) => (
+              {['React', 'Node.js', 'Python', 'AI/ML', 'Data Science', 'TypeScript', 'AWS', 'Docker'].map((skill, index) => (
                 <motion.span
                   key={skill}
                   className="bg-gradient-to-r from-accent to-slate text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg"
                   initial={{ scale: 0, rotate: -180 }}
                   whileInView={{ scale: 1, rotate: 0 }}
-                  transition={{ duration: 0.5, delay: 0.8 + index * 0.1, type: "spring" }}
+                  transition={{ duration: 0.5, delay: 1.2 + index * 0.1, type: "spring" }}
                   viewport={{ once: true }}
                   whileHover={{ 
                     scale: 1.1,

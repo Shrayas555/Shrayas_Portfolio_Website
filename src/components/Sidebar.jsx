@@ -1,10 +1,11 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaUser, FaFileAlt, FaTools, FaProjectDiagram, FaEnvelope, FaHome, FaTwitter, FaLinkedin, FaGithub, FaBars } from 'react-icons/fa';
+import { FaUser, FaFileAlt, FaTools, FaProjectDiagram, FaEnvelope, FaHome, FaTwitter, FaLinkedin, FaGithub, FaBars, FaRoute } from 'react-icons/fa';
 
 const navLinks = [
   { id: 'hero', label: 'Home', icon: <FaHome /> },
   { id: 'about', label: 'About', icon: <FaUser /> },
+  { id: 'journey', label: 'Journey', icon: <FaRoute /> },
   { id: 'resume', label: 'Resume', icon: <FaFileAlt /> },
   { id: 'skills', label: 'Skills', icon: <FaTools /> },
   { id: 'projects', label: 'Projects', icon: <FaProjectDiagram /> },
@@ -57,8 +58,8 @@ const Sidebar = () => {
     if (id === 'resume') {
       // Download resume instead of scrolling
       const link = document.createElement('a');
-      link.href = '/Shrayas_resume.pdf';
-      link.download = 'Shrayas_resume.pdf';
+      link.href = '/Shrayas_Srinivasan_Resume.pdf';
+      link.download = 'Shrayas_Srinivasan_Resume.pdf';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
