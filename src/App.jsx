@@ -6,6 +6,7 @@ import JourneySection from './components/JourneySection';
 import SkillsSection from './components/SkillsSection';
 import ProjectsSection from './components/ProjectsSection';
 import ContactSection from './components/ContactSection';
+import CertificationsSection from './components/CertificationsSection';
 import EntranceAnimation from './components/EntranceAnimation';
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -185,6 +186,7 @@ function App() {
                   <AboutSection scrollDirection={scrollDirection} />
                   <JourneySection />
                   <SkillsSection scrollDirection={scrollDirection} />
+                  <CertificationsSection scrollDirection={scrollDirection} />
                   <ProjectsSection scrollDirection={scrollDirection} />
                   <ContactSection scrollDirection={scrollDirection} />
                 </div>

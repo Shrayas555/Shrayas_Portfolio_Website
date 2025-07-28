@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaUser, FaFileAlt, FaTools, FaProjectDiagram, FaEnvelope, FaHome, FaTwitter, FaLinkedin, FaGithub, FaBars, FaRoute } from 'react-icons/fa';
+import { FaUser, FaFileAlt, FaTools, FaProjectDiagram, FaEnvelope, FaHome, FaTwitter, FaLinkedin, FaGithub, FaBars, FaRoute, FaCertificate } from 'react-icons/fa';
 
 const navLinks = [
   { id: 'hero', label: 'Home', icon: <FaHome /> },
@@ -8,6 +8,7 @@ const navLinks = [
   { id: 'journey', label: 'Journey', icon: <FaRoute /> },
   { id: 'resume', label: 'Resume', icon: <FaFileAlt /> },
   { id: 'skills', label: 'Skills', icon: <FaTools /> },
+  { id: 'certifications', label: 'Certifications', icon: <FaCertificate /> },
   { id: 'projects', label: 'Projects', icon: <FaProjectDiagram /> },
   { id: 'contact', label: 'Contact', icon: <FaEnvelope /> },
 ];
