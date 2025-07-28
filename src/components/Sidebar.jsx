@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaUser, FaFileAlt, FaTools, FaProjectDiagram, FaEnvelope, FaHome, FaTwitter, FaLinkedin, FaGithub, FaBars, FaRoute, FaCertificate } from 'react-icons/fa';
+import { FaUser, FaFileAlt, FaTools, FaProjectDiagram, FaEnvelope, FaHome, FaLinkedin, FaGithub, FaBars, FaRoute, FaCertificate } from 'react-icons/fa';
 
 const navLinks = [
   { id: 'hero', label: 'Home', icon: <FaHome /> },
@@ -14,9 +14,8 @@ const navLinks = [
 ];
 
 const socialLinks = [
-  { href: 'https://twitter.com/', icon: <FaTwitter /> },
-  { href: 'https://linkedin.com/in/shrayas-srinivasan', icon: <FaLinkedin /> },
-  { href: 'https://github.com/shrayas-srinivasan', icon: <FaGithub /> },
+  { href: 'https://www.linkedin.com/in/shrayas-raju/', icon: <FaLinkedin /> },
+  { href: 'https://github.com/Shrayas555', icon: <FaGithub /> },
 ];
 
 const Sidebar = () => {

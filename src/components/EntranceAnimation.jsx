@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const EntranceAnimation = ({ onComplete }) => {
-  const [animationPhase, setAnimationPhase] = useState('entrance');
   const [nameVisible, setNameVisible] = useState(false);
   const [exitStarted, setExitStarted] = useState(false);
   const [flickerStarted, setFlickerStarted] = useState(false);

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import StarfieldBackground from './StarfieldBackground';
 
 const AboutSection = ({ scrollDirection }) => {
