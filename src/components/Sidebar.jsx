@@ -37,13 +37,18 @@ const Sidebar = () => {
       });
       const activeIndex = offsets.findIndex((top, i) => top > 0 && (i === 0 || offsets[i - 1] <= 0));
       const activeId = navLinks[Math.max(0, activeIndex - 1)].id;
-      // Don't set resume as active since it's not a scrollable section
-      if (activeId !== 'resume') {
+      // Don't override resume if it's currently active
+      if (active === 'resume') {
+        scrollTimeout.current = null;
+        return;
+      }
+      // Only set active if it's not resume and not already set
+      if (activeId !== 'resume' && activeId !== active) {
         setActive(activeId);
       }
       scrollTimeout.current = null;
     }, 100); // Less frequent updates for sidebar
-  }, []);
+  }, [active]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -57,13 +62,11 @@ const Sidebar = () => {
 
   const scrollToSection = (id) => {
     if (id === 'resume') {
-      // Download resume instead of scrolling
-      const link = document.createElement('a');
-      link.href = '/Shrayas_Srinivasan_Resume.pdf';
-      link.download = 'Shrayas_Srinivasan_Resume.pdf';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      // Open resume in Google Drive instead of downloading
+      // Replace this URL with your actual Google Drive link when ready
+      const driveLink = 'https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing';
+      window.open(driveLink, '_blank');
+      setActive(id); // Set resume as active
       setOpen(false);
     } else {
       const el = document.getElementById(id);

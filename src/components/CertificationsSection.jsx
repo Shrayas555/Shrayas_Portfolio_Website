@@ -132,7 +132,7 @@ const CertificationsSection = ({ scrollDirection }) => {
           viewport={{ once: true }}
         >
           <h2 className="text-5xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-accent via-slate to-silver">
-            Licenses & certifications
+            Certifications
           </h2>
           
           {/* Animated underline */}
