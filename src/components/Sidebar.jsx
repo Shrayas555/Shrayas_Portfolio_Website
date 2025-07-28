@@ -92,25 +92,26 @@ const Sidebar = () => {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -300, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 200, damping: 30 }}
-            className="fixed top-0 left-0 h-full w-80 bg-gradient-to-b from-charcoal via-white to-charcoal shadow-2xl z-40 flex flex-col h-full justify-between items-center py-12 px-6 md:translate-x-0 md:opacity-100 border-r border-slate/30"
+            className="fixed top-0 left-0 h-full w-80 bg-gradient-to-b from-charcoal via-white to-charcoal shadow-2xl z-40 flex flex-col justify-between items-center py-8 px-6 md:translate-x-0 md:opacity-100 border-r border-slate/30"
           >
-            {/* Profile */}
-            <div className="flex flex-col items-center mb-8 mt-2">
-              <div className="relative w-36 h-36 mb-4 flex items-center justify-center">
+            {/* Profile - Larger and more spaced */}
+            <div className="flex flex-col items-center mb-8 mt-4">
+              <div className="relative w-32 h-32 mb-6 flex items-center justify-center">
                 <span className="absolute inset-0 rounded-full bg-gradient-to-tr from-accent/60 via-white/80 to-accent/60 blur-sm opacity-80 z-0"></span>
                 <span className="absolute inset-0 rounded-full border-4 border-accent z-10"></span>
                 <img
                   src="/profile_2.png"
                   alt="Shrayas Raju"
-                  className="relative w-32 h-32 rounded-full object-cover object-top border-4 border-silver shadow-xl bg-slate z-20"
+                  className="relative w-28 h-28 rounded-full object-cover object-top border-4 border-silver shadow-xl bg-slate z-20"
                   style={{ objectPosition: 'center 0' }}
                 />
               </div>
-              <div className="text-3xl font-extrabold text-charcoal text-center tracking-tight mb-2">Shrayas Raju</div>
+              <div className="text-3xl font-extrabold text-charcoal text-center tracking-tight mb-4">Shrayas Raju</div>
             </div>
-            {/* Nav Links */}
-            <nav className="flex-1 w-full flex flex-col items-center min-h-0 overflow-y-auto">
-              <ul className="flex flex-col gap-6 w-full mt-4 mb-4">
+            
+            {/* Nav Links - Better spaced */}
+            <nav className="flex-1 w-full flex flex-col items-center justify-center -mt-8">
+              <ul className="flex flex-col gap-4 w-full">
                 {navLinks.map(link => (
                   <li key={link.id}>
                     <button
@@ -128,16 +129,17 @@ const Sidebar = () => {
                 ))}
               </ul>
             </nav>
-            {/* Socials */}
-            <div className="flex flex-col items-center gap-3 mb-2 w-full mt-8">
-              <div className="flex gap-6 mb-2">
+            
+            {/* Socials - More spaced */}
+            <div className="flex flex-col items-center gap-4 w-full mt-8">
+              <div className="flex gap-6 mb-3">
                 {socialLinks.map((s, i) => (
                   <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" className="text-xl text-silver hover:text-accent transition-colors cursor-hover-target">
                     {s.icon}
                   </a>
                 ))}
               </div>
-              <div className="text-xs text-silver mt-2 font-medium">&copy; 2025 Shrayas Raju</div>
+              <div className="text-sm text-silver font-medium">&copy; 2025 Shrayas Raju</div>
             </div>
           </motion.aside>
         )}
