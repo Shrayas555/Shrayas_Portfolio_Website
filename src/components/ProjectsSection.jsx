@@ -4,65 +4,51 @@ import StarfieldBackground from './StarfieldBackground';
 
 const projects = [
   { 
-    title: 'DMA-PRIME Dashboard', 
-    description: 'A comprehensive data visualization dashboard for DMA research with real-time analytics and interactive charts.',
-    technologies: ['React', 'D3.js', 'Node.js', 'MongoDB'],
+    title: 'Portfolio Website', 
+    description: 'This personal website built to showcase my projects, experience, and skills. Features smooth animations, modular components, and a clean user interface.',
+    technologies: ['React', 'Node.js', 'Framer Motion','HTML', 'Tailwind CSS', 'JavaScript'],
     icon: '📊',
     color: 'from-accent to-slate',
     link: '#',
-    image: '/icons/app.png', // Using existing icon as placeholder
-    github: 'https://github.com/yourusername/dma-prime'
+    image: '/icons/portfolio.png', // Using existing icon as placeholder
   },
   { 
-    title: 'Movie Recommender', 
-    description: 'An intelligent movie recommendation system using machine learning algorithms and collaborative filtering.',
-    technologies: ['Python', 'TensorFlow', 'Flask', 'PostgreSQL'],
+    title: 'Movie Recommendation System', 
+    description: 'Built an AI-powered movie recommendation system using Streamlit, Python, and the TMDB API. Implemented content-based filtering to suggest movies based on user preferences, delivering personalized recommendations through an interactive web UI.',
+    technologies: ['Python', 'TensorFlow', 'Flask', 'Pandas', 'Streamlit','Scikit-learn'],
     icon: '🎬',
     color: 'from-slate to-silver',
-    link: '#',
-    image: '/icons/app.png', // Using existing icon as placeholder
-    github: 'https://github.com/yourusername/movie-recommender'
+    link: 'https://shrayas555-cinematch-app-jfapod.streamlit.app/',
+    image: '/icons/cinematch2.png', // Using existing icon as placeholder
   },
   { 
-    title: 'Portfolio Website', 
-    description: 'This stunning portfolio website built with modern technologies and beautiful animations.',
-    technologies: ['React', 'Tailwind CSS', 'Framer Motion', 'Vite'],
+    title: 'Dog breed prediction using Deep Learning', 
+    description: 'Developed a deep learning model to classify dog breeds from images with high accuracy. Utilized CNNs (Convolutional Neural Networks) with TensorFlow and Keras, showcasing the capability of AI in image recognition and classification.',
+    technologies: ['Python', 'TensorFlow', 'Keras', 'OpenCV','Pandas','Matplotlib','Seaborn','Scikit-learn','Numpy'],
     icon: '✨',
     color: 'from-accent to-slate',
-    link: '#',
-    image: '/icons/app.png', // Using existing icon as placeholder
-    github: 'https://github.com/yourusername/portfolio'
+    link: 'https://github.com/Shrayas555/DogVision/blob/main/DogVision.ipynb',
+    image: '/icons/dog.jpg', // Using existing icon as placeholder
   },
   { 
-    title: 'AI Chat Assistant', 
-    description: 'A conversational AI assistant powered by natural language processing and machine learning.',
-    technologies: ['Python', 'OpenAI', 'FastAPI', 'Redis'],
+    title: 'Gender Classification using Deep Learning', 
+    description: 'Designed and trained a deep learning model to predict gender from facial images. Used convolutional architectures and image preprocessing techniques to improve model precision and inference speed.',
+    technologies: ['Python', 'TensorFlow', 'Keras', 'OpenCV','Pandas','Matplotlib','Seaborn','Scikit-learn','Numpy'],
     icon: '🤖',
     color: 'from-slate to-silver',
-    link: '#',
-    image: '/icons/ai-ml.svg', // Using AI/ML icon
-    github: 'https://github.com/yourusername/ai-chat'
+    link: 'https://github.com/Shrayas555/Gender-Classification/blob/main/Gender_classification.ipynb',
+    image: '/icons/gender.png', // Using AI/ML icon
   },
   { 
-    title: 'E-Commerce Platform', 
-    description: 'A full-stack e-commerce platform with payment integration and inventory management.',
-    technologies: ['React', 'Node.js', 'Stripe', 'MongoDB'],
+    title: 'Heart Disease Prediction using Machine Learning', 
+    description: 'Built a predictive model using RandomForestClassifier to identify individuals at risk of heart disease. The project aims to support early diagnosis and preventive healthcare decisions by analyzing clinical data.',
+    technologies: ['Python', 'TensorFlow', 'Keras', 'OpenCV','Pandas','Matplotlib','Seaborn','Scikit-learn','Numpy'],
     icon: '🛒',
     color: 'from-accent to-slate',
     link: '#',
-    image: '/icons/app.png', // Using existing icon as placeholder
-    github: 'https://github.com/yourusername/ecommerce'
+    image: '/icons/heart.jpeg', // Using existing icon as placeholder
   },
-  { 
-    title: 'Task Management App', 
-    description: 'A collaborative task management application with real-time updates and team features.',
-    technologies: ['Vue.js', 'Firebase', 'Vuetify', 'PWA'],
-    icon: '📋',
-    color: 'from-slate to-silver',
-    link: '#',
-    image: '/icons/app.png', // Using existing icon as placeholder
-    github: 'https://github.com/yourusername/task-manager'
-  },
+  
 ];
 
 const ProjectsSection = ({ scrollDirection }) => {
@@ -120,8 +106,8 @@ const ProjectsSection = ({ scrollDirection }) => {
           transition={{ duration: 1, type: "spring" }}
           viewport={{ once: true }}
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-accent via-slate to-silver">
-            Featured Projects
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-accent via-slate to-silver leading-none pb-2">
+            Projects
           </h2>
           
           {/* Animated underline */}
@@ -174,7 +160,7 @@ const ProjectsSection = ({ scrollDirection }) => {
                 />
 
                 {/* Project Image */}
-                <div className="relative h-40 overflow-hidden">
+                <div className="relative h-52 overflow-hidden">
                   <motion.img
                     src={project.image}
                     alt={project.title}
@@ -186,11 +172,6 @@ const ProjectsSection = ({ scrollDirection }) => {
                   />
                   {/* Image overlay gradient */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                  
-                  {/* Link indicator */}
-                  <div className="absolute top-4 left-4">
-                    <span className="text-silver text-sm font-medium">Link</span>
-                  </div>
                 </div>
 
                 {/* Project content */}
@@ -199,9 +180,6 @@ const ProjectsSection = ({ scrollDirection }) => {
                   <h3 className="text-lg font-bold text-accent mb-2 group-hover:text-white transition-colors duration-300">
                     {project.title}
                   </h3>
-
-                  {/* GitHub source */}
-                  <p className="text-silver text-sm mb-2">GitHub</p>
 
                   {/* Project description */}
                   <p className="text-silver mb-4 leading-relaxed text-sm">
@@ -239,7 +217,7 @@ const ProjectsSection = ({ scrollDirection }) => {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 bg-gradient-to-r from-accent to-purple-500 text-white px-4 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105 text-sm"
+                      className="inline-flex items-center gap-2 bg-gradient-to-r from-accent to-slate text-white px-4 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105 text-sm"
                     >
                       View Project
                       <motion.span
@@ -302,10 +280,10 @@ const ProjectsSection = ({ scrollDirection }) => {
               Check out my GitHub for more projects and contributions
             </p>
             <motion.a
-              href="https://github.com/yourusername"
+              href="https://github.com/Shrayas555"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-accent to-purple-500 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-accent to-slate text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

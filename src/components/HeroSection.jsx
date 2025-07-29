@@ -1,16 +1,8 @@
 import AnimatedText from './AnimatedText';
-import AnimatedButton from './AnimatedButton';
 import StarfieldBackground from './StarfieldBackground';
 import { TypeAnimation } from 'react-type-animation';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-
-const scrollToWork = () => {
-  const el = document.getElementById('projects');
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth' });
-  }
-};
 
 const heroVariants = {
   hidden: { opacity: 0, y: 40 },
@@ -111,30 +103,7 @@ const HeroSection = () => {
     }
   };
 
-  const buttonVariants = {
-    hidden: { opacity: 0, scale: 0.8, y: 20 },
-    visible: { 
-      opacity: 1, 
-      scale: 1, 
-      y: 0,
-      transition: { 
-        duration: 1,
-        delay: 3.2,
-        type: "spring",
-        stiffness: 200,
-        damping: 20
-      }
-    },
-    hover: {
-      scale: 1.1,
-      y: -5,
-      transition: { duration: 0.3, type: "spring" }
-    },
-    tap: {
-      scale: 0.95,
-      transition: { duration: 0.1 }
-    }
-  };
+
 
   const name = "Shrayas Raju";
 
@@ -144,7 +113,7 @@ const HeroSection = () => {
       <StarfieldBackground className="section-background" particleCount={30} />
       
       {/* Main content container */}
-      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center w-full max-w-7xl mx-auto gap-12 lg:gap-16 lg:pl-8">
+      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center w-full max-w-7xl mx-auto gap-12 lg:gap-16">
         {/* Profile Image */}
         <motion.div
           className="relative flex-shrink-0 flex justify-center items-center w-full lg:w-2/5 order-2 lg:order-1"
@@ -165,7 +134,7 @@ const HeroSection = () => {
         
         {/* Hero Content */}
         <motion.div
-          className="relative z-10 flex flex-col items-center lg:items-start lg:w-3/5 text-center lg:text-left order-1 lg:order-2 min-w-0 lg:pl-0 lg:-ml-4"
+          className="relative z-10 flex flex-col items-center lg:items-start lg:w-3/5 text-center lg:text-left order-1 lg:order-2 min-w-0"
           variants={heroVariants}
           initial="hidden"
           animate="visible"
@@ -390,64 +359,7 @@ const HeroSection = () => {
             </div>
           </motion.div>
           
-          {/* Superb Button Animation */}
-          <motion.div
-            variants={buttonVariants}
-            initial="hidden"
-            animate="visible"
-            whileHover="hover"
-            whileTap="tap"
-            className="relative"
-          >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-accent to-slate rounded-full blur-lg opacity-50"
-              animate={{
-                scale: [1, 1.1, 1],
-                opacity: [0.3, 0.6, 0.3],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-accent to-slate rounded-full"
-              animate={{
-                background: [
-                  'linear-gradient(45deg, #A3A3A3, #495057)',
-                  'linear-gradient(45deg, #495057, #CED4DA)',
-                  'linear-gradient(45deg, #CED4DA, #A3A3A3)',
-                  'linear-gradient(45deg, #A3A3A3, #495057)',
-                ],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-            />
-                          <AnimatedButton 
-                className="relative z-10 bg-gradient-to-r from-accent to-slate hover:from-slate hover:to-accent text-white font-bold shadow-lg text-sm sm:text-base md:text-lg px-8 py-4 lg:px-10 lg:py-5 rounded-full transition-all duration-300 hover:shadow-2xl" 
-                onClick={scrollToWork}
-                style={{
-                  boxShadow: '0 0 20px rgba(163, 163, 163, 0.4), 0 0 40px rgba(206, 212, 218, 0.2)',
-                }}
-              >
-              <motion.span
-                animate={{
-                  x: [0, 5, 0],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
-                View My Work
-              </motion.span>
-            </AnimatedButton>
-          </motion.div>
+
         </motion.div>
       </div>
       
