@@ -58,7 +58,7 @@ const skillCategories = [
       { name: 'Deep Learning', icon: null, color: 'from-indigo-500 to-purple-500' },
       { name: 'Computer Vision', icon: null, color: 'from-green-500 to-teal-500' },
       { name: 'Data Science', icon: null, color: 'from-blue-500 to-cyan-500' },
-      { name: 'Data Visualization', icon: '/icons/data-visualization.svg', color: 'from-green-400 to-emerald-500' },
+      { name: 'Data Visualization', icon: null, color: 'from-green-400 to-emerald-500' },
       { name: 'Scikit-learn', icon: '/icons/scikit-learn.svg', color: 'from-orange-500 to-yellow-500' },
       { name: 'NumPy', icon: '/icons/numpy.svg', color: 'from-blue-500 to-indigo-500' },
       { name: 'Pandas', icon: '/icons/pandas.svg', color: 'from-blue-400 to-blue-600' },

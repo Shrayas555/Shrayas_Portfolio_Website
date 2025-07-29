@@ -6,57 +6,75 @@ import { FaExternalLinkAlt } from 'react-icons/fa';
 const certifications = [
   {
     id: 1,
-    name: 'AWS Certified Solutions Architect',
-    issuer: 'Amazon Web Services',
-    date: 'Issued Dec 2024 · No Expiration Date',
-    logo: '☁️',
-    color: 'from-blue-500 to-cyan-400',
-    link: 'https://google.com' // Replace with actual link
+    name: 'Complete A.I. & Machine Learning, Data Science Bootcamp (UDEMY)',
+    issuer: 'Zero To Mastery',
+    date: 'Issued Mar 2024',
+    logo: '/icons/ZTM.svg',
+    color: 'from-purple-600 to-pink-600',
+    link: 'https://drive.google.com/file/d/1_HNJX-oR_-ytykaV6AFIlT-QSQdbCtth/view?usp=sharing' // Replace with actual link
   },
   {
     id: 2,
-    name: 'Google Cloud Professional Developer',
-    issuer: 'Google Cloud',
-    date: 'Issued Nov 2024 · No Expiration Date',
-    logo: '🔧',
-    color: 'from-green-500 to-blue-500',
-    link: 'https://google.com' // Replace with actual link
+    name: 'The Complete Full-Stack Web Development Bootcamp (UDEMY)',
+    issuer: 'Angela Yu',
+    date: 'Issued Jul 2025',
+    logo: '/icons/app.png',
+    color: 'from-red-500 to-orange-500',
+    link: 'https://drive.google.com/file/d/1QP2Ff8dGSB9YD0qAVfij91Fh3j9d_ZB8/view?usp=sharing' // Replace with actual link
   },
   {
     id: 3,
-    name: 'Microsoft Azure Developer Associate',
-    issuer: 'Microsoft',
-    date: 'Issued Oct 2023 · No Expiration Date',
-    logo: '⚡',
-    color: 'from-blue-600 to-purple-600',
-    link: 'https://google.com' // Replace with actual link
+    name: 'Group 1 Investigators Conducting Social and Behavioral Science Research (SBR) at Clemson University',
+    issuer: 'CITI Program',
+    date: 'Issued May 2025',
+    logo: '/icons/CITI.jpeg',
+    color: 'from-blue-600 to-indigo-700',
+    link: 'https://www.citiprogram.org/verify/?wdbdd3fd9-7d24-4571-8f52-3ce903368a0d-69702311' // Replace with actual link
   },
   {
     id: 4,
-    name: 'Kubernetes Administrator (CKA)',
-    issuer: 'Cloud Native Computing Foundation',
-    date: 'Issued Sep 2023 · No Expiration Date',
-    logo: '⚓',
-    color: 'from-blue-400 to-indigo-600',
-    link: 'https://google.com' // Replace with actual link
+    name: 'Group 3 Investigators Requiring the HIPAA Module only',
+    issuer: 'CITI Program',
+    date: 'Issued May 2025',
+    logo: '/icons/CITI.jpeg',
+    color: 'from-blue-600 to-indigo-700',
+    link: 'https://www.citiprogram.org/verify/?w1b841d77-dc89-4c7c-968a-58ed4e3e9ddd-69702312' // Replace with actual link
   },
   {
     id: 5,
-    name: 'Docker Certified Associate',
-    issuer: 'Docker Inc.',
-    date: 'Issued Aug 2023 · No Expiration Date',
-    logo: '🐳',
-    color: 'from-blue-500 to-cyan-300',
-    link: 'https://google.com' // Replace with actual link
+    name: 'Data Science and Machine Learning with Python',
+    issuer: 'Besant Technologies',
+    date: 'Issued Oct 2022',
+    logo: '/icons/besant.jpeg',
+    color: 'from-blue-500 to-cyan-500',
+    link: 'https://drive.google.com/file/d/1q9dHIP5bCd1X50ONOpUwPjcr76K2ArPy/view?usp=sharing' // Replace with actual link
   },
   {
     id: 6,
-    name: 'Certified Scrum Master (CSM)',
-    issuer: 'Scrum Alliance',
-    date: 'Issued Jul 2023 · No Expiration Date',
-    logo: '🔄',
-    color: 'from-orange-500 to-red-500',
-    link: 'https://google.com' // Replace with actual link
+    name: 'Deep Learning',
+    issuer: 'Besant Technologies',
+    date: 'Issued Oct 2022',
+    logo: '/icons/besant.jpeg',
+    color: 'from-blue-500 to-cyan-500',
+    link: 'https://drive.google.com/file/d/1s1YhKHGvYgjTwZAqLftT6m2yDhGhqWwl/view?usp=sharing' // Replace with actual link
+  },
+  {
+    id: 7,
+    name: 'Python',
+    issuer: 'HackerRank',
+    date: 'Issued Jul 2022',
+    logo: '/icons/HackerRank.png',
+    color: 'from-green-500 to-emerald-600',
+    link: 'https://www.hackerrank.com/certificates/e48ff3a1ca1d' // Replace with actual link
+  },
+  {
+    id: 8,
+    name: 'Data Science Intern',
+    issuer: 'Code Clause',
+    date: 'Issued Nov 2022',
+    logo: null,
+    color: 'from-blue-500 to-purple-600',
+    link: 'https://drive.google.com/file/d/14iVIcQ869S-nWnboNJcHoeAJRohDa8AY/view?usp=sharing' // Replace with actual link
   }
 ];
 
@@ -162,7 +180,7 @@ const CertificationsSection = ({ scrollDirection }) => {
             >
               {/* Certification Card */}
               <motion.div
-                className="bg-slate/20 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-accent/30 relative overflow-hidden h-full hover:bg-slate/30 transition-all duration-300"
+                className={`bg-slate/20 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-accent/30 relative overflow-hidden h-full hover:bg-slate/30 transition-all duration-300 ${!cert.logo ? 'flex flex-col justify-center' : ''}`}
                 whileHover={{ 
                   boxShadow: "0 20px 40px rgba(163, 163, 163, 0.2)",
                   transition: { duration: 0.3 }
@@ -179,15 +197,25 @@ const CertificationsSection = ({ scrollDirection }) => {
                 />
 
                 {/* Logo */}
-                <motion.div
-                  className="text-4xl mb-4 text-center"
-                  animate={{
-                    scale: hoveredCert === index ? [1, 1.1, 1] : 1,
-                  }}
-                  transition={{ duration: 0.4 }}
-                >
-                  {cert.logo}
-                </motion.div>
+                {cert.logo && (
+                  <motion.div
+                    className="mb-4 text-center flex justify-center"
+                    animate={{
+                      scale: hoveredCert === index ? [1, 1.1, 1] : 1,
+                    }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    {cert.logo.endsWith('.svg') || cert.logo.endsWith('.png') || cert.logo.endsWith('.jpg') || cert.logo.endsWith('.jpeg') ? (
+                      <img 
+                        src={cert.logo} 
+                        alt={`${cert.name} logo`}
+                        className="w-16 h-16 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                      />
+                    ) : (
+                      <span className="text-4xl">{cert.logo}</span>
+                    )}
+                  </motion.div>
+                )}
 
                 {/* Certification name */}
                 <h3 className="text-xl font-bold text-silver mb-2 text-center leading-tight">
