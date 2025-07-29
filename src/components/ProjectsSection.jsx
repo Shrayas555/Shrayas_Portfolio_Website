@@ -10,7 +10,8 @@ const projects = [
     icon: '📊',
     color: 'from-accent to-slate',
     link: '#',
-    image: '/project1.jpg'
+    image: '/icons/app.png', // Using existing icon as placeholder
+    github: 'https://github.com/yourusername/dma-prime'
   },
   { 
     title: 'Movie Recommender', 
@@ -19,7 +20,8 @@ const projects = [
     icon: '🎬',
     color: 'from-slate to-silver',
     link: '#',
-    image: '/project2.jpg'
+    image: '/icons/app.png', // Using existing icon as placeholder
+    github: 'https://github.com/yourusername/movie-recommender'
   },
   { 
     title: 'Portfolio Website', 
@@ -28,7 +30,8 @@ const projects = [
     icon: '✨',
     color: 'from-accent to-slate',
     link: '#',
-    image: '/project3.jpg'
+    image: '/icons/app.png', // Using existing icon as placeholder
+    github: 'https://github.com/yourusername/portfolio'
   },
   { 
     title: 'AI Chat Assistant', 
@@ -37,7 +40,8 @@ const projects = [
     icon: '🤖',
     color: 'from-slate to-silver',
     link: '#',
-    image: '/project4.jpg'
+    image: '/icons/ai-ml.svg', // Using AI/ML icon
+    github: 'https://github.com/yourusername/ai-chat'
   },
   { 
     title: 'E-Commerce Platform', 
@@ -46,7 +50,8 @@ const projects = [
     icon: '🛒',
     color: 'from-accent to-slate',
     link: '#',
-    image: '/project5.jpg'
+    image: '/icons/app.png', // Using existing icon as placeholder
+    github: 'https://github.com/yourusername/ecommerce'
   },
   { 
     title: 'Task Management App', 
@@ -55,7 +60,8 @@ const projects = [
     icon: '📋',
     color: 'from-slate to-silver',
     link: '#',
-    image: '/project6.jpg'
+    image: '/icons/app.png', // Using existing icon as placeholder
+    github: 'https://github.com/yourusername/task-manager'
   },
 ];
 
@@ -139,7 +145,7 @@ const ProjectsSection = ({ scrollDirection }) => {
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
@@ -155,7 +161,7 @@ const ProjectsSection = ({ scrollDirection }) => {
             >
               {/* Project Card */}
               <motion.div
-                className="bg-slate/20 backdrop-blur-sm rounded-2xl p-6 shadow-2xl border border-accent/30 relative overflow-hidden h-full"
+                className="bg-slate/20 backdrop-blur-sm rounded-2xl shadow-2xl border border-accent/30 relative overflow-hidden h-full"
                 whileHover={{ 
                   boxShadow: "0 25px 50px rgba(163, 163, 163, 0.2)",
                   borderColor: "rgba(163, 163, 163, 0.5)",
@@ -167,72 +173,86 @@ const ProjectsSection = ({ scrollDirection }) => {
                   className={`absolute inset-0 bg-gradient-to-r ${project.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
                 />
 
-                {/* Icon */}
-                <motion.div
-                  className="text-5xl mb-4 text-center"
-                  animate={{
-                    scale: hoveredProject === index ? [1, 1.3, 1] : 1,
-                    rotate: hoveredProject === index ? [0, 15, -15, 0] : 0,
-                  }}
-                  transition={{ duration: 0.6 }}
-                >
-                  {project.icon}
-                </motion.div>
-
-                {/* Project title */}
-                <h3 className="text-xl font-bold text-accent mb-3 text-center group-hover:text-white transition-colors duration-300">
-                  {project.title}
-                </h3>
-
-                {/* Project description */}
-                <p className="text-silver mb-6 text-center leading-relaxed">
-                  {project.description}
-                </p>
-
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2 justify-center mb-6">
-                  {project.technologies.map((tech, techIndex) => (
-                    <motion.span
-                      key={tech}
-                      className="bg-accent/20 text-accent px-3 py-1 rounded-full text-sm font-medium border border-accent/30"
-                      initial={{ scale: 0, opacity: 0 }}
-                      whileInView={{ scale: 1, opacity: 1 }}
-                      transition={{ duration: 0.5, delay: 0.2 + techIndex * 0.1 }}
-                      viewport={{ once: true }}
-                      whileHover={{ 
-                        scale: 1.1,
-                        backgroundColor: "rgba(173, 216, 230, 0.3)",
-                        transition: { duration: 0.2 }
-                      }}
-                    >
-                      {tech}
-                    </motion.span>
-                  ))}
+                {/* Project Image */}
+                <div className="relative h-40 overflow-hidden">
+                  <motion.img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                    whileHover={{ 
+                      scale: 1.1,
+                      transition: { duration: 0.3 }
+                    }}
+                  />
+                  {/* Image overlay gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                  
+                  {/* Link indicator */}
+                  <div className="absolute top-4 left-4">
+                    <span className="text-silver text-sm font-medium">Link</span>
+                  </div>
                 </div>
 
-                {/* View Project Button */}
-                <motion.div
-                  className="text-center"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <a
-          href={project.link}
-          target="_blank"
-          rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-gradient-to-r from-accent to-purple-500 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105"
+                {/* Project content */}
+                <div className="p-5">
+                  {/* Project title */}
+                  <h3 className="text-lg font-bold text-accent mb-2 group-hover:text-white transition-colors duration-300">
+                    {project.title}
+                  </h3>
+
+                  {/* GitHub source */}
+                  <p className="text-silver text-sm mb-2">GitHub</p>
+
+                  {/* Project description */}
+                  <p className="text-silver mb-4 leading-relaxed text-sm">
+                    {project.description}
+                  </p>
+
+                  {/* Technologies */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.map((tech, techIndex) => (
+                      <motion.span
+                        key={tech}
+                        className="bg-accent/20 text-accent px-2 py-1 rounded-full text-xs font-medium border border-accent/30"
+                        initial={{ scale: 0, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        transition={{ duration: 0.5, delay: 0.2 + techIndex * 0.1 }}
+                        viewport={{ once: true }}
+                        whileHover={{ 
+                          scale: 1.1,
+                          backgroundColor: "rgba(173, 216, 230, 0.3)",
+                          transition: { duration: 0.2 }
+                        }}
+                      >
+                        {tech}
+                      </motion.span>
+                    ))}
+                  </div>
+
+                  {/* View Project Button */}
+                  <motion.div
+                    className="text-center"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    View Project
-                    <motion.span
-                      animate={{
-                        x: hoveredProject === index ? [0, 5, 0] : 0,
-                      }}
-                      transition={{ duration: 0.5 }}
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-gradient-to-r from-accent to-purple-500 text-white px-4 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105 text-sm"
                     >
-                      →
-                    </motion.span>
-                  </a>
-                </motion.div>
+                      View Project
+                      <motion.span
+                        animate={{
+                          x: hoveredProject === index ? [0, 5, 0] : 0,
+                        }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        →
+                      </motion.span>
+                    </a>
+                  </motion.div>
+                </div>
 
                 {/* Floating particles on hover */}
                 {hoveredProject === index && (
@@ -268,35 +288,35 @@ const ProjectsSection = ({ scrollDirection }) => {
 
         {/* Call to action */}
         <motion.div
-          className="text-center mt-16"
+          className="text-center mt-12 max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
           viewport={{ once: true }}
         >
-          <div className="bg-slate/20 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-gray-700">
-            <h3 className="text-2xl font-bold text-accent mb-4">
-              Want to see more? 🚀
+          <div className="bg-slate/20 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-gray-700">
+            <h3 className="text-xl font-bold text-accent mb-3">
+              Want to see more? 
             </h3>
-            <p className="text-gray-300 text-lg mb-6">
+            <p className="text-gray-300 text-base mb-4">
               Check out my GitHub for more projects and contributions
             </p>
             <motion.a
               href="https://github.com/yourusername"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-accent to-purple-500 text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-accent to-purple-500 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               Visit GitHub
               <span>→</span>
-        </motion.a>
-    </div>
+            </motion.a>
+          </div>
         </motion.div>
       </motion.div>
-  </section>
-);
+    </section>
+  );
 };
 
 export default ProjectsSection; 

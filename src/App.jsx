@@ -186,8 +186,8 @@ function App() {
                   <AboutSection scrollDirection={scrollDirection} />
                   <JourneySection />
                   <SkillsSection scrollDirection={scrollDirection} />
-                  <CertificationsSection scrollDirection={scrollDirection} />
                   <ProjectsSection scrollDirection={scrollDirection} />
+                  <CertificationsSection scrollDirection={scrollDirection} />
                   <ContactSection scrollDirection={scrollDirection} />
                 </div>
               </motion.div>

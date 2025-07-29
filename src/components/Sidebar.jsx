@@ -8,8 +8,8 @@ const navLinks = [
   { id: 'journey', label: 'Journey', icon: <FaRoute /> },
   { id: 'resume', label: 'Resume', icon: <FaFileAlt /> },
   { id: 'skills', label: 'Skills', icon: <FaTools /> },
-  { id: 'certifications', label: 'Certifications', icon: <FaCertificate /> },
   { id: 'projects', label: 'Projects', icon: <FaProjectDiagram /> },
+  { id: 'certifications', label: 'Certifications', icon: <FaCertificate /> },
   { id: 'contact', label: 'Contact', icon: <FaEnvelope /> },
 ];
 
