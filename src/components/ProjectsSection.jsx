@@ -45,7 +45,7 @@ const projects = [
     technologies: ['Python', 'TensorFlow', 'Keras', 'OpenCV','Pandas','Matplotlib','Seaborn','Scikit-learn','Numpy'],
     icon: '🛒',
     color: 'from-accent to-slate',
-    link: '#',
+    link: 'https://github.com/Shrayas555/Predicting-heart-disease-using-machine-learning/blob/main/Heart_disease_classification.ipynb',
     image: '/icons/heart.jpeg', // Using existing icon as placeholder
   },
   
