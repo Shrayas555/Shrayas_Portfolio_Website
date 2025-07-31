@@ -2,6 +2,7 @@
   "name": "portfolio_website",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Shrayas555.github.io/Shrayas_Portfolio_Website",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
