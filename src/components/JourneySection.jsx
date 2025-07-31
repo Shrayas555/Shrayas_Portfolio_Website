@@ -21,7 +21,7 @@ const JourneySection = () => {
       company: "Clemson University, SC, USA",
       period: "2024 - 2026",
       description: "Pursuing advanced studies in Computer Science with focus on AI, Machine Learning, and Data Science. Working on cutting-edge research projects and developing innovative solutions.",
-      grade: "Grade: 4.0 / 4.0",
+      grade: "Grade: 4.0",
       side: "right"
     },
     {

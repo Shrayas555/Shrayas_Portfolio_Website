@@ -1,12 +1,11 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaUser, FaFileAlt, FaTools, FaProjectDiagram, FaEnvelope, FaHome, FaLinkedin, FaGithub, FaBars, FaRoute, FaCertificate } from 'react-icons/fa';
+import { FaUser, FaTools, FaProjectDiagram, FaEnvelope, FaHome, FaLinkedin, FaGithub, FaBars, FaRoute, FaCertificate } from 'react-icons/fa';
 
 const navLinks = [
   { id: 'hero', label: 'Home', icon: <FaHome /> },
   { id: 'about', label: 'About', icon: <FaUser /> },
   { id: 'journey', label: 'Journey', icon: <FaRoute /> },
-  { id: 'resume', label: 'Resume', icon: <FaFileAlt /> },
   { id: 'skills', label: 'Skills', icon: <FaTools /> },
   { id: 'projects', label: 'Projects', icon: <FaProjectDiagram /> },
   { id: 'certifications', label: 'Certifications', icon: <FaCertificate /> },
@@ -29,20 +28,12 @@ const Sidebar = () => {
     
     scrollTimeout.current = setTimeout(() => {
       const offsets = navLinks.map(link => {
-        // Skip resume section since it's not in the DOM
-        if (link.id === 'resume') return Infinity;
         const el = document.getElementById(link.id);
         return el ? el.getBoundingClientRect().top : Infinity;
       });
       const activeIndex = offsets.findIndex((top, i) => top > 0 && (i === 0 || offsets[i - 1] <= 0));
       const activeId = navLinks[Math.max(0, activeIndex - 1)].id;
-      // Don't override resume if it's currently active
-      if (active === 'resume') {
-        scrollTimeout.current = null;
-        return;
-      }
-      // Only set active if it's not resume and not already set
-      if (activeId !== 'resume' && activeId !== active) {
+      if (activeId !== active) {
         setActive(activeId);
       }
       scrollTimeout.current = null;
@@ -60,20 +51,11 @@ const Sidebar = () => {
   }, [handleScroll]);
 
   const scrollToSection = (id) => {
-    if (id === 'resume') {
-      // Open resume in Google Drive instead of downloading
-      // Replace this URL with your actual Google Drive link when ready
-      const driveLink = 'https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing';
-      window.open(driveLink, '_blank');
-      setActive(id); // Set resume as active
+    const el = document.getElementById(id);
+    if (el) {
+      setActive(id);
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       setOpen(false);
-    } else {
-      const el = document.getElementById(id);
-      if (el) {
-        setActive(id);
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        setOpen(false);
-      }
     }
   };
 
@@ -112,8 +94,8 @@ const Sidebar = () => {
             </div>
             
             {/* Nav Links - Better spaced */}
-            <nav className="flex-1 w-full flex flex-col items-center justify-center -mt-8">
-              <ul className="flex flex-col gap-4 w-full">
+            <nav className="flex-1 w-full flex flex-col items-center justify-center -mt-4">
+              <ul className="flex flex-col gap-5 w-full">
                 {navLinks.map(link => (
                   <li key={link.id}>
                     <button
@@ -133,7 +115,7 @@ const Sidebar = () => {
             </nav>
             
             {/* Socials - More spaced */}
-            <div className="flex flex-col items-center gap-4 w-full mt-8">
+            <div className="flex flex-col items-center gap-4 w-full mt-6">
               <div className="flex gap-6 mb-3">
                 {socialLinks.map((s, i) => (
                   <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" className="text-xl text-silver hover:text-accent transition-colors cursor-hover-target">
