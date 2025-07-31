@@ -86,8 +86,8 @@ const CertificationsSection = ({ scrollDirection }) => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
+        staggerChildren: 0.05,
+        delayChildren: 0.1
       }
     }
   }), []);
@@ -139,7 +139,7 @@ const CertificationsSection = ({ scrollDirection }) => {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.1 }}
       >
         {/* Section Title */}
         <motion.div
@@ -157,7 +157,7 @@ const CertificationsSection = ({ scrollDirection }) => {
           <motion.div
             className="h-1 bg-gradient-to-r from-accent via-slate to-silver rounded-full mx-auto"
             initial={{ width: 0 }}
-            whileInView={{ width: '400px' }}
+            whileInView={{ width: '80%', maxWidth: '400px' }}
             transition={{ duration: 1.5, delay: 0.5 }}
             viewport={{ once: true }}
           />
@@ -180,7 +180,7 @@ const CertificationsSection = ({ scrollDirection }) => {
             >
               {/* Certification Card */}
               <motion.div
-                className={`bg-slate/20 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-accent/30 relative overflow-hidden h-full hover:bg-slate/30 transition-all duration-300 ${!cert.logo ? 'flex flex-col justify-center' : ''}`}
+                className={`bg-slate/20 backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-xl border border-accent/30 relative overflow-hidden h-full hover:bg-slate/30 transition-all duration-300 ${!cert.logo ? 'flex flex-col justify-center' : ''}`}
                 whileHover={{ 
                   boxShadow: "0 20px 40px rgba(163, 163, 163, 0.2)",
                   transition: { duration: 0.3 }

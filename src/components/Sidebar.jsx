@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaUser, FaTools, FaProjectDiagram, FaEnvelope, FaHome, FaLinkedin, FaGithub, FaBars, FaRoute, FaCertificate } from 'react-icons/fa';
+import { FaUser, FaTools, FaProjectDiagram, FaEnvelope, FaHome, FaLinkedin, FaGithub, FaRoute, FaCertificate } from 'react-icons/fa';
 
 const navLinks = [
   { id: 'hero', label: 'Home', icon: <FaHome /> },
@@ -61,12 +61,7 @@ const Sidebar = () => {
 
   return (
     <>
-      {/* Hamburger for mobile */}
-      <div className="md:hidden fixed top-4 left-4 z-50">
-        <button onClick={() => setOpen(!open)} className="p-2 rounded bg-white shadow-md">
-          <FaBars className="text-2xl text-indigo-700" />
-        </button>
-      </div>
+
       {/* Sidebar */}
       <AnimatePresence>
         {(open || window.innerWidth >= 768) && (
@@ -76,7 +71,7 @@ const Sidebar = () => {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -300, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 200, damping: 30 }}
-            className="fixed top-0 left-0 h-full w-80 bg-gradient-to-b from-charcoal via-white to-charcoal shadow-2xl z-40 flex flex-col justify-between items-center py-8 px-6 md:translate-x-0 md:opacity-100 border-r border-slate/30"
+            className="fixed top-0 left-0 h-full w-80 bg-gradient-to-b from-charcoal via-white to-charcoal shadow-2xl z-40 flex flex-col justify-between items-center py-8 px-6 hidden xl:flex border-r border-slate/30"
           >
             {/* Profile - Larger and more spaced */}
             <div className="flex flex-col items-center mb-8 mt-4">

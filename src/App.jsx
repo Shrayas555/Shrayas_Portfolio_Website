@@ -8,6 +8,7 @@ import ProjectsSection from './components/ProjectsSection';
 import ContactSection from './components/ContactSection';
 import CertificationsSection from './components/CertificationsSection';
 import EntranceAnimation from './components/EntranceAnimation';
+import ScrollToTop from './components/ScrollToTop';
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -114,8 +115,9 @@ function App() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
+            {/* Sidebar for laptop/desktop only */}
             <motion.div
-              className="relative z-20"
+              className="relative z-20 hidden xl:block"
               initial={{ x: -300, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ 
@@ -131,7 +133,7 @@ function App() {
             </motion.div>
             
             <motion.main 
-              className="flex-1 ml-0 md:ml-72 h-full relative overflow-y-auto bg-black"
+              className="flex-1 ml-0 xl:ml-80 h-full relative overflow-y-auto bg-black"
               initial={{ x: 200, opacity: 0, scale: 0.95 }}
               animate={{ x: 0, opacity: 1, scale: 1 }}
               transition={{ 
@@ -182,7 +184,7 @@ function App() {
                 }}
               >
                 <section id="hero"><HeroSection /></section>
-                <div className="pl-4 md:pl-6 lg:pl-8">
+                <div className="pl-0 xl:pl-6">
                   <AboutSection scrollDirection={scrollDirection} />
                   <JourneySection />
                   <SkillsSection scrollDirection={scrollDirection} />
@@ -195,6 +197,9 @@ function App() {
           </motion.div>
         )}
       </AnimatePresence>
+      
+      {/* Scroll to top button for mobile */}
+      <ScrollToTop />
     </div>
   );
 }

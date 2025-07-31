@@ -1,10 +1,8 @@
 import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 
 const JourneySection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   const journeyData = [
     {
@@ -66,8 +64,8 @@ const JourneySection = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.2
+        staggerChildren: 0.1,
+        delayChildren: 0.1
       }
     }
   };
@@ -91,16 +89,7 @@ const JourneySection = () => {
     }
   };
 
-  const timelineVariants = {
-    hidden: { scaleY: 0 },
-    visible: { 
-      scaleY: 1,
-      transition: { 
-        duration: 1.5,
-        ease: "easeInOut"
-      }
-    }
-  };
+
 
   return (
     <section id="journey" className="relative py-20 bg-black overflow-hidden">
@@ -109,7 +98,8 @@ const JourneySection = () => {
         className="max-w-6xl mx-auto px-4"
         variants={containerVariants}
         initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
       >
         {/* Section Title */}
         <motion.div
@@ -138,31 +128,36 @@ const JourneySection = () => {
 
         {/* Timeline Container */}
         <div className="relative">
-          {/* Central Timeline Line */}
+          {/* Desktop Timeline Line - Hidden on mobile */}
           <motion.div
-            className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-white h-full"
-            variants={timelineVariants}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
+            className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-white h-full hidden md:block"
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            viewport={{ once: true, amount: 0.1 }}
+            style={{ 
+              transformOrigin: 'top',
+              transform: 'translateX(-50%)'
+            }}
           />
 
           {/* Journey Items */}
-          <div className="space-y-16">
+          <div className="space-y-8 md:space-y-12 lg:space-y-16 xl:space-y-16">
             {journeyData.map((item, index) => (
               <motion.div
                 key={item.id}
                 className={`relative flex items-center ${
-                  item.side === 'left' ? 'justify-start' : 'justify-end'
+                  item.side === 'left' ? 'justify-center md:justify-start' : 'justify-center md:justify-end'
                 }`}
                 variants={itemVariants}
               >
-                {/* Timeline Dot */}
+                {/* Desktop Timeline Dot - Hidden on mobile */}
                 <motion.div
-                  className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rounded-full border-2 border-black shadow-lg z-10"
+                  className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rounded-full border-2 border-black shadow-lg z-10 hidden md:block"
                   style={{ 
                     left: '50%',
                     transform: 'translateX(-50%)',
-                    marginLeft: '-6px' // Adjust to center perfectly on the line
+                    marginLeft: '-6px'
                   }}
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
@@ -170,11 +165,13 @@ const JourneySection = () => {
                   viewport={{ once: true }}
                 />
 
+
+
                 {/* Content Card */}
                 <motion.div
-                  className={`w-full max-w-md ${
-                    item.side === 'left' ? 'pr-2' : 'pl-2'
-                  }`}
+                  className={`w-full max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg ${
+                    item.side === 'left' ? 'md:pr-8 lg:pr-2' : 'md:pl-8 lg:pl-2'
+                  } md:ml-0 ml-0`}
                   initial={{ 
                     opacity: 0, 
                     x: item.side === 'left' ? -50 : 50 
@@ -184,29 +181,31 @@ const JourneySection = () => {
                     x: 0 
                   }}
                   transition={{ 
-                    duration: 0.8, 
-                    delay: 0.4 + index * 0.2,
+                    duration: 0.6, 
+                    delay: 0.1 + index * 0.1,
                     type: "spring",
                     stiffness: 100,
                     damping: 15
                   }}
-                  viewport={{ once: true }}
+                  viewport={{ once: true, amount: 0.1 }}
                 >
                   <motion.div
-                    className="bg-slate/20 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-accent/30 hover:border-accent/50 transition-all duration-300"
+                    className="bg-slate/20 backdrop-blur-sm rounded-2xl p-3 md:p-5 lg:p-6 xl:p-6 shadow-xl border border-accent/30 hover:border-accent/50 transition-all duration-300 relative"
                     whileHover={{ 
                       scale: 1.02,
                       boxShadow: "0 20px 40px rgba(163, 163, 163, 0.2)",
                       y: -5
                     }}
                   >
+
+
                     {/* Title */}
-                    <h3 className="text-xl font-bold text-accent mb-2">
+                    <h3 className="text-lg md:text-xl font-bold text-accent mb-2">
                       {item.title}
                     </h3>
                     
                     {/* Company */}
-                    <p className="text-lg text-silver font-medium mb-1">
+                    <p className="text-base md:text-lg text-silver font-medium mb-1">
                       {item.company}
                     </p>
                     
@@ -223,7 +222,7 @@ const JourneySection = () => {
                     )}
                     
                     {/* Description */}
-                    <p className="text-silver leading-relaxed">
+                    <p className="text-sm md:text-base text-silver leading-relaxed">
                       {item.description}
                     </p>
                   </motion.div>
@@ -231,8 +230,6 @@ const JourneySection = () => {
               </motion.div>
             ))}
           </div>
-
-
         </div>
       </motion.div>
     </section>

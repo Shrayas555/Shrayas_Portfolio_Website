@@ -149,7 +149,7 @@ const SkillsSection = ({ scrollDirection }) => {
       >
         {/* Section Title */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-16 px-4"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, type: "spring" }}
@@ -163,13 +163,13 @@ const SkillsSection = ({ scrollDirection }) => {
           <motion.div
             className="h-1 bg-gradient-to-r from-accent via-slate to-silver rounded-full mx-auto"
             initial={{ width: 0 }}
-            whileInView={{ width: '400px' }}
+            whileInView={{ width: '200px' }}
             transition={{ duration: 1.5, delay: 0.5 }}
             viewport={{ once: true }}
           />
           
           <motion.p
-            className="text-xl text-silver/80 mt-6 max-w-3xl mx-auto"
+            className="text-xl text-silver/80 mt-6 max-w-3xl mx-auto px-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}

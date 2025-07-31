@@ -160,7 +160,7 @@ const AboutSection = ({ scrollDirection }) => {
           >
             {/* Main About Card */}
             <motion.div
-              className="bg-slate/20 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-accent/30"
+              className="bg-slate/20 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-xl border border-accent/30"
               whileHover={{ 
                 scale: 1.02,
                 boxShadow: "0 20px 40px rgba(163, 163, 163, 0.2)",
@@ -168,7 +168,7 @@ const AboutSection = ({ scrollDirection }) => {
               }}
             >
               <motion.p
-                className="text-lg md:text-xl text-silver leading-relaxed mb-6"
+                className="text-base md:text-xl text-silver leading-relaxed mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
@@ -178,7 +178,7 @@ const AboutSection = ({ scrollDirection }) => {
               </motion.p>
               
               <motion.p
-                className="text-lg md:text-xl text-silver leading-relaxed mb-6"
+                className="text-base md:text-xl text-silver leading-relaxed mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
@@ -188,7 +188,7 @@ const AboutSection = ({ scrollDirection }) => {
               </motion.p>
 
               <motion.p
-                className="text-lg md:text-xl text-silver leading-relaxed mb-6"
+                className="text-base md:text-xl text-silver leading-relaxed mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
@@ -198,7 +198,7 @@ const AboutSection = ({ scrollDirection }) => {
               </motion.p>
 
               <motion.p
-                className="text-lg md:text-xl text-silver leading-relaxed"
+                className="text-base md:text-xl text-silver leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}

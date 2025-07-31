@@ -208,7 +208,7 @@ const EntranceAnimation = ({ onComplete }) => {
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <h1 
-              className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-white tracking-[0.2em] font-mono relative"
+              className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-white tracking-[0.2em] font-mono relative whitespace-nowrap"
               style={{
                 fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace',
                 letterSpacing: '0.2em',

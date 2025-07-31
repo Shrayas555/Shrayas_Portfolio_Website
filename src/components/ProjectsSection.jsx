@@ -59,8 +59,8 @@ const ProjectsSection = ({ scrollDirection }) => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1
+        staggerChildren: 0.1,
+        delayChildren: 0.05
       }
     }
   };
@@ -96,7 +96,7 @@ const ProjectsSection = ({ scrollDirection }) => {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.1 }}
       >
         {/* Section Title */}
         <motion.div
@@ -114,7 +114,7 @@ const ProjectsSection = ({ scrollDirection }) => {
           <motion.div
             className="h-1 bg-gradient-to-r from-accent via-slate to-silver rounded-full mx-auto"
             initial={{ width: 0 }}
-            whileInView={{ width: '400px' }}
+            whileInView={{ width: '200px' }}
             transition={{ duration: 1.5, delay: 0.5 }}
             viewport={{ once: true }}
           />
@@ -175,14 +175,14 @@ const ProjectsSection = ({ scrollDirection }) => {
                 </div>
 
                 {/* Project content */}
-                <div className="p-5">
+                <div className="p-4 md:p-5">
                   {/* Project title */}
                   <h3 className="text-lg font-bold text-accent mb-2 group-hover:text-white transition-colors duration-300">
                     {project.title}
                   </h3>
 
                   {/* Project description */}
-                  <p className="text-silver mb-4 leading-relaxed text-sm">
+                  <p className="text-silver mb-4 leading-relaxed text-xs md:text-sm">
                     {project.description}
                   </p>
 

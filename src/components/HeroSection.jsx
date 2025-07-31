@@ -116,7 +116,7 @@ const HeroSection = () => {
       <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center w-full max-w-7xl mx-auto gap-12 lg:gap-16">
         {/* Profile Image */}
         <motion.div
-          className="relative flex-shrink-0 flex justify-center items-center w-full lg:w-2/5 order-2 lg:order-1"
+          className="relative flex-shrink-0 flex justify-center items-center w-full lg:w-2/5 order-2 lg:order-1 -mt-12 md:mt-0 lg:mt-0 ipad-mini-profile-up"
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, type: 'spring' }}
@@ -226,7 +226,7 @@ const HeroSection = () => {
                   ease: "easeInOut"
                 }}
               />
-              <div className="relative z-10 flex items-center">
+              <div className="relative z-10 flex items-center justify-center lg:justify-start">
                 <TypeAnimation
                   sequence={[
                     'Aspiring Software Developer',
@@ -365,7 +365,7 @@ const HeroSection = () => {
       
       {/* Micro-interaction: subtle scroll indicator */}
       <motion.div 
-        className="absolute bottom-8 lg:bottom-12 left-1/2 -translate-x-1/2"
+        className="absolute bottom-4 lg:bottom-12 left-1/2 -translate-x-1/2"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 3.5, duration: 0.8 }}

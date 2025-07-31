@@ -46,8 +46,8 @@ const ContactSection = ({ scrollDirection }) => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.2
+        staggerChildren: 0.1,
+        delayChildren: 0.1
       }
     }
   }), []);
@@ -81,7 +81,7 @@ const ContactSection = ({ scrollDirection }) => {
   }), []);
 
   return (
-    <section id="contact" className="relative min-h-screen bg-black overflow-hidden">
+    <section id="contact" className="relative min-h-screen bg-black overflow-hidden pt-16 md:pt-12 pb-20 md:pb-24">
       {/* Starfield background */}
       <StarfieldBackground className="section-background" particleCount={40} />
       
@@ -120,15 +120,15 @@ const ContactSection = ({ scrollDirection }) => {
       />
 
       <motion.div
-        className="relative z-10 flex h-screen"
+        className="relative z-10 flex min-h-screen"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.1 }}
       >
         {/* Left Sidebar - Social Media Icons */}
         <motion.div
-          className="hidden lg:flex flex-col items-center justify-center space-y-8 px-8 border-r border-accent/20"
+          className="hidden xl:flex flex-col items-center justify-center space-y-8 px-8 border-r border-accent/20"
           initial={{ x: -100, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
@@ -197,7 +197,7 @@ const ContactSection = ({ scrollDirection }) => {
 
         {/* Main Content Area */}
         <motion.div
-          className="flex-1 flex items-center justify-center px-8"
+          className="flex-1 flex items-center justify-center px-4 md:px-8 py-8 md:py-12 xl:ml-0"
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, delay: 0.8 }}
@@ -206,7 +206,7 @@ const ContactSection = ({ scrollDirection }) => {
           <div className="text-center max-w-4xl">
                          {/* Small heading */}
              <motion.h3
-               className="text-3xl md:text-4xl font-semibold text-accent mb-6"
+               className="text-3xl md:text-4xl font-semibold text-accent mb-6 mt-8 md:mt-0"
                initial={{ opacity: 0, y: 30 }}
                whileInView={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8, delay: 1 }}
@@ -217,7 +217,7 @@ const ContactSection = ({ scrollDirection }) => {
 
             {/* Main heading */}
             <motion.h1
-              className="text-5xl md:text-7xl lg:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-silver via-accent to-slate mb-8 leading-tight"
+              className="text-4xl md:text-7xl lg:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-silver via-accent to-slate mb-8 leading-tight"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 1.2 }}
@@ -232,7 +232,7 @@ const ContactSection = ({ scrollDirection }) => {
 
                          {/* Description */}
              <motion.p
-               className="text-lg md:text-xl text-silver/80 max-w-2xl mx-auto mb-12 leading-relaxed"
+               className="text-base md:text-xl text-silver/80 max-w-2xl mx-auto mb-6 md:mb-10 leading-relaxed px-4"
                initial={{ opacity: 0, y: 30 }}
                whileInView={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8, delay: 1.4 }}
@@ -245,7 +245,7 @@ const ContactSection = ({ scrollDirection }) => {
 
                          {/* CTA Button */}
              <motion.div
-               className="relative inline-block mb-16"
+               className="relative inline-block mb-6 md:mb-12"
                initial={{ opacity: 0, y: 30 }}
                whileInView={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8, delay: 1.6 }}
@@ -289,7 +289,7 @@ const ContactSection = ({ scrollDirection }) => {
 
              {/* Contact Info Cards */}
              <motion.div
-               className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto"
+               className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto"
                initial={{ opacity: 0, y: 30 }}
                whileInView={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8, delay: 1.8 }}
@@ -297,7 +297,7 @@ const ContactSection = ({ scrollDirection }) => {
              >
                {/* Email Card */}
                <motion.div
-                 className="group relative bg-slate/10 backdrop-blur-sm border border-accent/20 rounded-xl p-6 hover:border-accent/40 transition-all duration-300"
+                 className="group relative bg-slate/10 backdrop-blur-sm border border-accent/20 rounded-xl p-3 md:p-6 hover:border-accent/40 transition-all duration-300"
                  whileHover={{ 
                    scale: 1.02,
                    boxShadow: "0 10px 30px rgba(163, 163, 163, 0.2)"
@@ -325,7 +325,7 @@ const ContactSection = ({ scrollDirection }) => {
 
                {/* LinkedIn Card */}
                <motion.div
-                 className="group relative bg-slate/10 backdrop-blur-sm border border-accent/20 rounded-xl p-6 hover:border-accent/40 transition-all duration-300"
+                 className="group relative bg-slate/10 backdrop-blur-sm border border-accent/20 rounded-xl p-3 md:p-6 hover:border-accent/40 transition-all duration-300"
                  whileHover={{ 
                    scale: 1.02,
                    boxShadow: "0 10px 30px rgba(163, 163, 163, 0.2)"
@@ -355,7 +355,7 @@ const ContactSection = ({ scrollDirection }) => {
 
                {/* GitHub Card */}
                <motion.div
-                 className="group relative bg-slate/10 backdrop-blur-sm border border-accent/20 rounded-xl p-6 hover:border-accent/40 transition-all duration-300"
+                 className="group relative bg-slate/10 backdrop-blur-sm border border-accent/20 rounded-xl p-3 md:p-6 hover:border-accent/40 transition-all duration-300"
                  whileHover={{ 
                    scale: 1.02,
                    boxShadow: "0 10px 30px rgba(163, 163, 163, 0.2)"
@@ -405,30 +405,7 @@ const ContactSection = ({ scrollDirection }) => {
         </motion.div>
       </motion.div>
 
-      {/* Mobile social icons */}
-      <motion.div
-        className="lg:hidden absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-6"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 2 }}
-        viewport={{ once: true }}
-      >
-        {socialLinks.map((social, index) => (
-          <motion.a
-            key={social.label}
-            href={social.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xl text-silver hover:text-accent transition-colors duration-300"
-            whileHover={{ scale: 1.2, rotate: 360 }}
-            transition={{ duration: 0.6 }}
-          >
-            <social.icon />
-          </motion.a>
-        ))}
-      </motion.div>
 
-      
     </section>
   );
 };

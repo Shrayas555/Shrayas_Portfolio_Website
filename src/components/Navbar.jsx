@@ -24,7 +24,7 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className="fixed top-0 left-0 w-full bg-charcoal/90 backdrop-blur z-50 shadow-sm"
+      className="hidden md:block fixed top-0 left-0 w-full bg-charcoal/90 backdrop-blur z-50 shadow-sm"
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
