@@ -108,12 +108,12 @@ const HeroSection = () => {
   const name = "Shrayas Raju";
 
   return (
-    <section className="relative flex flex-col lg:flex-row items-center justify-center min-h-screen px-4 md:px-8 lg:px-12 text-charcoal select-none overflow-hidden bg-black">
+    <section className="relative flex flex-col lg:flex-row items-center justify-start min-h-screen px-4 md:px-8 lg:pr-16 text-charcoal select-none overflow-hidden bg-black">
       {/* Starfield background with moving particles */}
       <StarfieldBackground className="section-background" particleCount={30} />
       
       {/* Main content container */}
-      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center w-full max-w-7xl mx-auto gap-12 lg:gap-16">
+      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-start w-full max-w-7xl gap-12 lg:gap-16">
         {/* Profile Image */}
         <motion.div
           className="relative flex-shrink-0 flex justify-center items-center w-full lg:w-2/5 order-2 lg:order-1 -mt-12 md:mt-0 lg:mt-0 ipad-mini-profile-up"
@@ -134,7 +134,7 @@ const HeroSection = () => {
         
         {/* Hero Content */}
         <motion.div
-          className="relative z-10 flex flex-col items-center lg:items-start lg:w-3/5 text-center lg:text-left order-1 lg:order-2 min-w-0"
+          className="relative z-10 flex flex-col items-center lg:items-start lg:w-3/5 text-center lg:text-left order-1 lg:order-2 min-w-0 px-2"
           variants={heroVariants}
           initial="hidden"
           animate="visible"
@@ -151,13 +151,13 @@ const HeroSection = () => {
 
           {/* Animated Name */}
           <motion.div
-            className="relative mb-8 lg:mb-10 py-2 w-full overflow-hidden"
+            className="relative mb-8 lg:mb-10 py-4 w-full overflow-visible"
             variants={nameVariants}
             initial="hidden"
             animate="visible"
             onAnimationComplete={() => setNameAnimationComplete(true)}
           >
-            <h1 className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tight font-sans relative leading-[1.6] whitespace-nowrap" style={{ lineHeight: '1.6', paddingBottom: '0.3rem' }}>
+            <h1 className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-7xl tracking-tight font-sans relative leading-[1.8] whitespace-nowrap overflow-visible" style={{ lineHeight: '1.8', paddingBottom: '0.5rem', paddingTop: '0.5rem' }}>
               {name.split('').map((letter, index) => (
                 <motion.span
                   key={index}
@@ -166,7 +166,7 @@ const HeroSection = () => {
                   initial="hidden"
                   animate="visible"
                   className={`inline-block transition-all duration-500 ${
-                    letter === ' ' ? 'mx-3' : 'px-1'
+                    letter === ' ' ? 'mx-4' : 'px-1.5'
                   }`}
                   style={{
                     background: 'linear-gradient(135deg, #A3A3A3 0%, #CED4DA 50%, #A3A3A3 100%)',
@@ -226,7 +226,7 @@ const HeroSection = () => {
                   ease: "easeInOut"
                 }}
               />
-              <div className="relative z-10 flex items-center justify-center lg:justify-start">
+              <div className="relative z-10 flex items-center justify-center lg:justify-start lg:justify-start">
                 <TypeAnimation
                   sequence={[
                     'Aspiring Software Developer',
@@ -320,7 +320,7 @@ const HeroSection = () => {
               ))}
             </div>
             
-            <div className="relative z-10 flex items-center justify-center">
+            <div className="relative z-10 flex items-center justify-center lg:justify-start">
               <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-semibold text-white">
               Graduate Research Assistant – Software Developer @ Clemson University
               </h2>
@@ -347,7 +347,7 @@ const HeroSection = () => {
                 ease: "easeInOut"
               }}
             />
-            <div className="relative z-10">
+            <div className="relative z-10 flex justify-center lg:justify-start">
               <AnimatedText
                 text="MS in Computer Science @ Clemson University | Full-Stack Developer | AI | ML | Data Science"
                 className="text-sm sm:text-base md:text-lg lg:text-xl text-silver max-w-2xl leading-relaxed"
