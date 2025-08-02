@@ -211,6 +211,10 @@ const AboutSection = ({ scrollDirection }) => {
             {/* Lab Affiliation Showcase */}
             <motion.div
               className="bg-gradient-to-r from-accent/10 to-slate/10 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-accent/30"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+              viewport={{ once: true }}
               whileHover={{ 
                 scale: 1.02,
                 boxShadow: "0 20px 40px rgba(163, 163, 163, 0.3)",

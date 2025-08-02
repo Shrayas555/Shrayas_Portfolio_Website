@@ -71,10 +71,10 @@ const Sidebar = () => {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -300, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 200, damping: 30 }}
-            className="fixed top-0 left-0 h-full w-80 bg-gradient-to-b from-charcoal via-white to-charcoal shadow-2xl z-40 flex flex-col justify-between items-center py-8 px-6 hidden xl:flex border-r border-slate/30"
+            className="fixed top-0 left-0 h-full w-80 bg-gradient-to-b from-charcoal via-white to-charcoal shadow-2xl z-40 flex flex-col justify-between items-center py-8 xl:py-6 px-6 hidden xl:flex border-r border-slate/30"
           >
             {/* Profile - Larger and more spaced */}
-            <div className="flex flex-col items-center mb-8 mt-4">
+            <div className="flex flex-col items-center mb-8 xl:mb-6 mt-4">
               <div className="relative w-32 h-32 mb-6 flex items-center justify-center">
                 <span className="absolute inset-0 rounded-full bg-gradient-to-tr from-accent/60 via-white/80 to-accent/60 blur-sm opacity-80 z-0"></span>
                 <span className="absolute inset-0 rounded-full border-4 border-accent z-10"></span>
@@ -89,8 +89,8 @@ const Sidebar = () => {
             </div>
             
             {/* Nav Links - Better spaced */}
-            <nav className="flex-1 w-full flex flex-col items-center justify-center -mt-4">
-              <ul className="flex flex-col gap-5 w-full">
+            <nav className="flex-1 w-full flex flex-col items-center justify-center xl:justify-start pt-4 lg:pt-6 xl:pt-8 xl:overflow-y-auto">
+              <ul className="flex flex-col gap-5 xl:gap-3 w-full">
                 {navLinks.map(link => (
                   <li key={link.id}>
                     <button
@@ -110,7 +110,7 @@ const Sidebar = () => {
             </nav>
             
             {/* Socials - More spaced */}
-            <div className="flex flex-col items-center gap-4 w-full mt-6">
+            <div className="flex flex-col items-center gap-4 w-full mt-6 xl:mt-4 pb-4">
               <div className="flex gap-6 mb-3">
                 {socialLinks.map((s, i) => (
                   <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" className="text-xl text-silver hover:text-accent transition-colors cursor-hover-target">

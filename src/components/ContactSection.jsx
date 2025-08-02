@@ -124,14 +124,14 @@ const ContactSection = ({ scrollDirection }) => {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }}
+        viewport={{ once: true, amount: 0.3 }}
       >
         {/* Left Sidebar - Social Media Icons */}
         <motion.div
           className="hidden xl:flex flex-col items-center justify-center space-y-8 px-8 border-r border-accent/20"
           initial={{ x: -100, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
         >
           {socialLinks.map((social, index) => (
@@ -200,7 +200,7 @@ const ContactSection = ({ scrollDirection }) => {
           className="flex-1 flex items-center justify-center px-4 md:px-8 py-8 md:py-12 xl:ml-0"
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2, delay: 0.8 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
           viewport={{ once: true }}
         >
           <div className="text-center max-w-4xl">
@@ -209,7 +209,7 @@ const ContactSection = ({ scrollDirection }) => {
                className="text-3xl md:text-4xl font-semibold text-accent mb-6 mt-8 md:mt-0"
                initial={{ opacity: 0, y: 30 }}
                whileInView={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.8, delay: 1 }}
+               transition={{ duration: 0.5, delay: 0.4 }}
                viewport={{ once: true }}
              >
                Get in touch
@@ -220,7 +220,7 @@ const ContactSection = ({ scrollDirection }) => {
               className="text-4xl md:text-7xl lg:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-silver via-accent to-slate mb-8 leading-tight"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 1.2 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
               viewport={{ once: true }}
             >
               Let's Work
@@ -235,7 +235,7 @@ const ContactSection = ({ scrollDirection }) => {
                className="text-base md:text-xl text-silver/80 max-w-2xl mx-auto mb-6 md:mb-10 leading-relaxed px-4"
                initial={{ opacity: 0, y: 30 }}
                whileInView={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.8, delay: 1.4 }}
+               transition={{ duration: 0.5, delay: 0.6 }}
                viewport={{ once: true }}
              >
                Ready to bring your ideas to life? I'm passionate about creating innovative solutions 
@@ -248,7 +248,7 @@ const ContactSection = ({ scrollDirection }) => {
                className="relative inline-block mb-6 md:mb-12"
                initial={{ opacity: 0, y: 30 }}
                whileInView={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.8, delay: 1.6 }}
+               transition={{ duration: 0.5, delay: 0.7 }}
                viewport={{ once: true }}
              >
                <motion.button
@@ -292,7 +292,7 @@ const ContactSection = ({ scrollDirection }) => {
                className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto"
                initial={{ opacity: 0, y: 30 }}
                whileInView={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.8, delay: 1.8 }}
+               transition={{ duration: 0.5, delay: 0.8 }}
                viewport={{ once: true }}
              >
                {/* Email Card */}

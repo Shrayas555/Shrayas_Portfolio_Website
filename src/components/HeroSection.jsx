@@ -363,9 +363,9 @@ const HeroSection = () => {
         </motion.div>
       </div>
       
-      {/* Micro-interaction: subtle scroll indicator */}
+      {/* Micro-interaction: subtle scroll indicator - hidden on mobile */}
       <motion.div 
-        className="absolute bottom-4 lg:bottom-12 left-1/2 -translate-x-1/2"
+        className="absolute bottom-4 lg:bottom-12 left-1/2 -translate-x-1/2 hidden md:block"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 3.5, duration: 0.8 }}

@@ -133,7 +133,7 @@ function App() {
             </motion.div>
             
             <motion.main 
-              className="flex-1 ml-0 xl:ml-80 h-full relative overflow-y-auto bg-black"
+              className="flex-1 ml-0 xl:ml-80 h-full relative overflow-y-auto bg-black flex justify-center"
               initial={{ x: 200, opacity: 0, scale: 0.95 }}
               animate={{ x: 0, opacity: 1, scale: 1 }}
               transition={{ 
@@ -171,7 +171,7 @@ function App() {
               </motion.svg>
               
               <motion.div 
-                className="relative z-10"
+                className="relative z-10 w-full max-w-7xl"
                 initial={{ y: 100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ 
@@ -184,7 +184,7 @@ function App() {
                 }}
               >
                 <section id="hero"><HeroSection /></section>
-                <div className="pl-0 xl:pl-6">
+                <div className="pl-0 xl:pl-0">
                   <AboutSection scrollDirection={scrollDirection} />
                   <JourneySection />
                   <SkillsSection scrollDirection={scrollDirection} />

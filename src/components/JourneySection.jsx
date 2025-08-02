@@ -169,8 +169,8 @@ const JourneySection = () => {
 
                 {/* Content Card */}
                 <motion.div
-                  className={`w-full max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg ${
-                    item.side === 'left' ? 'md:pr-8 lg:pr-2' : 'md:pl-8 lg:pl-2'
+                  className={`w-full max-w-xs md:max-w-sm lg:max-w-sm xl:max-w-md ${
+                    item.side === 'left' ? 'md:pr-8 lg:pr-4' : 'md:pl-8 lg:pl-4'
                   } md:ml-0 ml-0`}
                   initial={{ 
                     opacity: 0, 
@@ -190,7 +190,7 @@ const JourneySection = () => {
                   viewport={{ once: true, amount: 0.1 }}
                 >
                   <motion.div
-                    className="bg-slate/20 backdrop-blur-sm rounded-2xl p-3 md:p-5 lg:p-6 xl:p-6 shadow-xl border border-accent/30 hover:border-accent/50 transition-all duration-300 relative"
+                    className="bg-slate/20 backdrop-blur-sm rounded-2xl p-3 md:p-5 lg:p-6 xl:p-7 shadow-xl border border-accent/30 hover:border-accent/50 transition-all duration-300 relative min-h-[200px] lg:min-h-[220px] xl:min-h-[240px]"
                     whileHover={{ 
                       scale: 1.02,
                       boxShadow: "0 20px 40px rgba(163, 163, 163, 0.2)",
