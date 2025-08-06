@@ -85,7 +85,7 @@ const CertificationsSection = ({ scrollDirection }) => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.05,
+        staggerChildren: 0.06,
         delayChildren: 0.1
       }
     }
@@ -94,21 +94,19 @@ const CertificationsSection = ({ scrollDirection }) => {
   const cardVariants = useMemo(() => ({
     hidden: { 
       opacity: 0, 
-      y: scrollDirection === 'down' ? 60 : -60,
-      scale: 0.8
+      y: 40,
+      scale: 0.95
     },
     visible: { 
       opacity: 1, 
       y: 0,
       scale: 1,
       transition: { 
-        duration: 0.8, 
-        type: "spring",
-        stiffness: 100,
-        damping: 15
+        duration: 0.6, 
+        ease: "easeOut"
       }
     }
-  }), [scrollDirection]);
+  }), []);
 
   const handleCardClick = (link) => {
     window.open(link, '_blank', 'noopener,noreferrer');
@@ -127,9 +125,9 @@ const CertificationsSection = ({ scrollDirection }) => {
         {/* Section Title */}
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, type: "spring" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
         >
           <h2 className="text-5xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-accent via-slate to-silver">
@@ -141,7 +139,7 @@ const CertificationsSection = ({ scrollDirection }) => {
             className="h-1 bg-gradient-to-r from-accent via-slate to-silver rounded-full mx-auto"
             initial={{ width: 0 }}
             whileInView={{ width: '80%', maxWidth: '400px' }}
-            transition={{ duration: 1.5, delay: 0.5 }}
+            transition={{ duration: 1, delay: 0.3 }}
             viewport={{ once: true }}
           />
         </motion.div>
@@ -154,29 +152,31 @@ const CertificationsSection = ({ scrollDirection }) => {
               className="relative group cursor-pointer"
               variants={cardVariants}
               whileHover={{ 
-                scale: 1.02,
-                transition: { duration: 0.3 }
+                scale: 1.01,
+                transition: { duration: 0.2, ease: "easeOut" }
               }}
               onHoverStart={() => setHoveredCert(index)}
               onHoverEnd={() => setHoveredCert(null)}
               onClick={() => handleCardClick(cert.link)}
+              style={{ willChange: 'transform' }}
             >
               {/* Certification Card */}
               <motion.div
-                className={`bg-slate/20 backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-xl border border-accent/30 relative overflow-hidden h-full hover:bg-slate/30 transition-all duration-300 ${!cert.logo ? 'flex flex-col justify-center' : ''}`}
+                className={`bg-slate/20 backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-xl border border-accent/30 relative overflow-hidden h-full hover:bg-slate/30 transition-all duration-200 ${!cert.logo ? 'flex flex-col justify-center' : ''}`}
                 whileHover={{ 
-                  boxShadow: "0 20px 40px rgba(163, 163, 163, 0.2)",
-                  transition: { duration: 0.3 }
+                  boxShadow: "0 15px 30px rgba(163, 163, 163, 0.15)",
+                  transition: { duration: 0.2 }
                 }}
+                style={{ willChange: 'box-shadow' }}
               >
                 {/* External link icon */}
-                <div className="absolute top-4 right-4 text-accent opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute top-4 right-4 text-accent opacity-60 group-hover:opacity-100 transition-opacity duration-200">
                   <FaExternalLinkAlt size={16} />
                 </div>
 
                 {/* Background gradient */}
-                <motion.div
-                  className={`absolute inset-0 bg-gradient-to-r ${cert.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
+                <div
+                  className={`absolute inset-0 bg-gradient-to-r ${cert.color} opacity-0 group-hover:opacity-5 transition-opacity duration-200`}
                 />
 
                 {/* Logo */}
@@ -184,15 +184,16 @@ const CertificationsSection = ({ scrollDirection }) => {
                   <motion.div
                     className="mb-4 text-center flex justify-center"
                     animate={{
-                      scale: hoveredCert === index ? [1, 1.1, 1] : 1,
+                      scale: hoveredCert === index ? [1, 1.05, 1] : 1,
                     }}
-                    transition={{ duration: 0.4 }}
+                    transition={{ duration: 0.3 }}
+                    style={{ willChange: 'transform' }}
                   >
                     {cert.logo.endsWith('.svg') || cert.logo.endsWith('.png') || cert.logo.endsWith('.jpg') || cert.logo.endsWith('.jpeg') ? (
                       <img 
                         src={cert.logo} 
                         alt={`${cert.name} logo`}
-                        className="w-16 h-16 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                        className="w-16 h-16 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-200"
                       />
                     ) : (
                       <span className="text-4xl">{cert.logo}</span>
@@ -215,13 +216,13 @@ const CertificationsSection = ({ scrollDirection }) => {
                   {cert.date}
                 </p>
 
-                {/* Floating particles on hover */}
+                {/* Optimized floating particles on hover - reduced count */}
                 {hoveredCert === index && (
                   <div className="absolute inset-0 pointer-events-none">
-                    {[...Array(4)].map((_, i) => (
+                    {[...Array(3)].map((_, i) => (
                       <motion.div
                         key={i}
-                        className="absolute w-1.5 h-1.5 bg-accent rounded-full"
+                        className="absolute w-1 h-1 bg-accent rounded-full"
                         initial={{ 
                           x: '50%', 
                           y: '50%', 
@@ -229,25 +230,27 @@ const CertificationsSection = ({ scrollDirection }) => {
                           opacity: 1 
                         }}
                         animate={{
-                          x: `${Math.random() * 100}%`,
-                          y: `${Math.random() * 100}%`,
+                          x: `${25 + (i * 25)}%`,
+                          y: `${25 + (i * 20)}%`,
                           scale: [0, 1, 0],
-                          opacity: [1, 0.6, 0],
+                          opacity: [1, 0.5, 0],
                         }}
                         transition={{
-                          duration: 1,
+                          duration: 0.8,
                           delay: i * 0.1,
+                          ease: "easeOut"
                         }}
+                        style={{ willChange: 'transform, opacity' }}
                       />
                     ))}
                   </div>
                 )}
 
                 {/* Glow effect on hover */}
-                <motion.div
-                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                <div
+                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-200"
                   style={{
-                    background: `radial-gradient(circle at center, ${cert.color.split(' ')[1]}15, transparent 70%)`
+                    background: `radial-gradient(circle at center, ${cert.color.split(' ')[1]}10, transparent 70%)`
                   }}
                 />
               </motion.div>

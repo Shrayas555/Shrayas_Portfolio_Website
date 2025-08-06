@@ -58,8 +58,8 @@ const ProjectsSection = ({ scrollDirection }) => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.05
+        staggerChildren: 0.08,
+        delayChildren: 0.1
       }
     }
   };
@@ -67,20 +67,16 @@ const ProjectsSection = ({ scrollDirection }) => {
   const projectCardVariants = {
     hidden: { 
       opacity: 0, 
-      y: scrollDirection === 'down' ? 80 : -80,
-      scale: 0.8,
-      rotateX: -15
+      y: 50,
+      scale: 0.95
     },
     visible: { 
       opacity: 1, 
       y: 0,
       scale: 1,
-      rotateX: 0,
       transition: { 
-        duration: 0.8, 
-        type: "spring",
-        stiffness: 100,
-        damping: 15
+        duration: 0.6, 
+        ease: "easeOut"
       }
     }
   };
@@ -98,9 +94,9 @@ const ProjectsSection = ({ scrollDirection }) => {
         {/* Section Title */}
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, type: "spring" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
         >
           <h2 className="text-5xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-accent via-slate to-silver leading-none pb-2">
@@ -112,7 +108,7 @@ const ProjectsSection = ({ scrollDirection }) => {
             className="h-1 bg-gradient-to-r from-accent via-slate to-silver rounded-full mx-auto"
             initial={{ width: 0 }}
             whileInView={{ width: '200px' }}
-            transition={{ duration: 1.5, delay: 0.5 }}
+            transition={{ duration: 1, delay: 0.3 }}
             viewport={{ once: true }}
           />
           
@@ -120,7 +116,7 @@ const ProjectsSection = ({ scrollDirection }) => {
             className="text-xl text-silver mt-6 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
             viewport={{ once: true }}
           >
             Explore my latest work and creative solutions
@@ -135,25 +131,26 @@ const ProjectsSection = ({ scrollDirection }) => {
               className="relative group"
               variants={projectCardVariants}
               whileHover={{ 
-                scale: 1.05,
-                rotateY: 5,
-                transition: { duration: 0.3 }
+                scale: 1.02,
+                transition: { duration: 0.2, ease: "easeOut" }
               }}
               onHoverStart={() => setHoveredProject(index)}
               onHoverEnd={() => setHoveredProject(null)}
+              style={{ willChange: 'transform' }}
             >
               {/* Project Card */}
               <motion.div
                 className="bg-slate/20 backdrop-blur-sm rounded-2xl shadow-2xl border border-accent/30 relative overflow-hidden h-full"
                 whileHover={{ 
-                  boxShadow: "0 25px 50px rgba(163, 163, 163, 0.2)",
-                  borderColor: "rgba(163, 163, 163, 0.5)",
-                  transition: { duration: 0.3 }
+                  boxShadow: "0 20px 40px rgba(163, 163, 163, 0.15)",
+                  borderColor: "rgba(163, 163, 163, 0.4)",
+                  transition: { duration: 0.2 }
                 }}
+                style={{ willChange: 'box-shadow, border-color' }}
               >
                 {/* Background gradient */}
-                <motion.div
-                  className={`absolute inset-0 bg-gradient-to-r ${project.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
+                <div
+                  className={`absolute inset-0 bg-gradient-to-r ${project.color} opacity-0 group-hover:opacity-10 transition-opacity duration-200`}
                 />
 
                 {/* Project Image */}
@@ -163,9 +160,10 @@ const ProjectsSection = ({ scrollDirection }) => {
                     alt={project.title}
                     className="w-full h-full object-cover"
                     whileHover={{ 
-                      scale: 1.1,
+                      scale: 1.05,
                       transition: { duration: 0.3 }
                     }}
+                    style={{ willChange: 'transform' }}
                   />
                   {/* Image overlay gradient */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
@@ -174,7 +172,7 @@ const ProjectsSection = ({ scrollDirection }) => {
                 {/* Project content */}
                 <div className="p-4 md:p-5">
                   {/* Project title */}
-                  <h3 className="text-lg font-bold text-accent mb-2 group-hover:text-white transition-colors duration-300">
+                  <h3 className="text-lg font-bold text-accent mb-2 group-hover:text-white transition-colors duration-200">
                     {project.title}
                   </h3>
 
@@ -191,13 +189,14 @@ const ProjectsSection = ({ scrollDirection }) => {
                         className="bg-accent/20 text-accent px-2 py-1 rounded-full text-xs font-medium border border-accent/30"
                         initial={{ scale: 0, opacity: 0 }}
                         whileInView={{ scale: 1, opacity: 1 }}
-                        transition={{ duration: 0.5, delay: 0.2 + techIndex * 0.1 }}
+                        transition={{ duration: 0.3, delay: 0.1 + techIndex * 0.05 }}
                         viewport={{ once: true }}
                         whileHover={{ 
-                          scale: 1.1,
+                          scale: 1.05,
                           backgroundColor: "rgba(173, 216, 230, 0.3)",
-                          transition: { duration: 0.2 }
+                          transition: { duration: 0.15 }
                         }}
+                        style={{ willChange: 'transform, background-color' }}
                       >
                         {tech}
                       </motion.span>
@@ -207,21 +206,23 @@ const ProjectsSection = ({ scrollDirection }) => {
                   {/* View Project Button */}
                   <motion.div
                     className="text-center"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    style={{ willChange: 'transform' }}
                   >
                     <a
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 bg-gradient-to-r from-accent to-slate text-white px-4 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105 text-sm"
+                      className="inline-flex items-center gap-2 bg-gradient-to-r from-accent to-slate text-white px-4 py-2 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-200 group-hover:scale-105 text-sm"
                     >
                       View Project
                       <motion.span
                         animate={{
-                          x: hoveredProject === index ? [0, 5, 0] : 0,
+                          x: hoveredProject === index ? [0, 3, 0] : 0,
                         }}
-                        transition={{ duration: 0.5 }}
+                        transition={{ duration: 0.4 }}
+                        style={{ willChange: 'transform' }}
                       >
                         →
                       </motion.span>
@@ -229,10 +230,10 @@ const ProjectsSection = ({ scrollDirection }) => {
                   </motion.div>
                 </div>
 
-                {/* Floating particles on hover */}
+                {/* Optimized floating particles on hover - reduced count */}
                 {hoveredProject === index && (
                   <div className="absolute inset-0 pointer-events-none">
-                    {[...Array(8)].map((_, i) => (
+                    {[...Array(4)].map((_, i) => (
                       <motion.div
                         key={i}
                         className="absolute w-1 h-1 bg-accent rounded-full"
@@ -243,15 +244,17 @@ const ProjectsSection = ({ scrollDirection }) => {
                           opacity: 1 
                         }}
                         animate={{
-                          x: `${Math.random() * 100}%`,
-                          y: `${Math.random() * 100}%`,
+                          x: `${20 + (i * 20)}%`,
+                          y: `${20 + (i * 15)}%`,
                           scale: [0, 1, 0],
-                          opacity: [1, 0.8, 0],
+                          opacity: [1, 0.6, 0],
                         }}
                         transition={{
-                          duration: 1.5,
-                          delay: i * 0.1,
+                          duration: 1,
+                          delay: i * 0.15,
+                          ease: "easeOut"
                         }}
+                        style={{ willChange: 'transform, opacity' }}
                       />
                     ))}
                   </div>
@@ -266,7 +269,7 @@ const ProjectsSection = ({ scrollDirection }) => {
           className="text-center mt-12 max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
         >
           <div className="bg-slate/20 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-gray-700">
@@ -280,9 +283,10 @@ const ProjectsSection = ({ scrollDirection }) => {
               href="https://github.com/Shrayas555"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-accent to-slate text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-accent to-slate text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              style={{ willChange: 'transform' }}
             >
               Visit GitHub
               <span>→</span>
