@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { FaLinkedin, FaGithub, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
 import { useState, useMemo } from 'react';
-import StarfieldBackground from './StarfieldBackground';
 
 const ContactSection = ({ scrollDirection }) => {
   const [hoveredSocial, setHoveredSocial] = useState(null);
@@ -24,21 +23,7 @@ const ContactSection = ({ scrollDirection }) => {
     window.open(mailtoLink);
   };
 
-  // Floating particles for background
-  const [floatingElements] = useState(() => {
-    const elements = [];
-    for (let i = 0; i < 15; i++) {
-      elements.push({
-        id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: Math.random() * 4 + 2,
-        delay: Math.random() * 3,
-        duration: 6 + Math.random() * 4
-      });
-    }
-    return elements;
-  });
+
 
   // Animation variants
   const containerVariants = useMemo(() => ({
@@ -52,20 +37,7 @@ const ContactSection = ({ scrollDirection }) => {
     }
   }), []);
 
-  const floatingVariants = useMemo(() => ({
-    animate: (custom) => ({
-      y: [0, -30, 0],
-      x: [0, 15, 0],
-      rotate: [0, 180, 360],
-      scale: [1, 1.2, 1],
-      transition: {
-        duration: custom.duration,
-        repeat: Infinity,
-        delay: custom.delay,
-        ease: "easeInOut"
-      }
-    })
-  }), []);
+
 
   const socialIconVariants = useMemo(() => ({
     initial: { scale: 1, y: 0 },
@@ -82,42 +54,6 @@ const ContactSection = ({ scrollDirection }) => {
 
   return (
     <section id="contact" className="relative min-h-screen bg-black overflow-hidden pt-16 md:pt-12 pb-20 md:pb-24">
-      {/* Starfield background */}
-      <StarfieldBackground className="section-background" particleCount={40} />
-      
-      {/* Floating background elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        {floatingElements.map((element) => (
-          <motion.div
-            key={element.id}
-            className="absolute rounded-full bg-gradient-to-r from-accent/30 to-slate/30"
-            style={{
-              left: `${element.x}%`,
-              top: `${element.y}%`,
-              width: element.size,
-              height: element.size
-            }}
-            custom={element}
-            variants={floatingVariants}
-            animate="animate"
-          />
-        ))}
-      </div>
-
-      {/* Animated background glow */}
-      <motion.div
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[800px] rounded-full bg-gradient-to-r from-accent/10 via-slate/10 to-silver/10 opacity-40 blur-3xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.4, 0.6, 0.4],
-          rotate: [0, 180, 360],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
 
       <motion.div
         className="relative z-10 flex min-h-screen"

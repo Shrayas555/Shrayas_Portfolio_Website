@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { useState, useMemo } from 'react';
-import StarfieldBackground from './StarfieldBackground';
 import { FaExternalLinkAlt } from 'react-icons/fa';
 
 const certifications = [
@@ -117,22 +116,6 @@ const CertificationsSection = ({ scrollDirection }) => {
 
   return (
     <section id="certifications" className="relative py-20 bg-black overflow-hidden">
-      {/* Starfield background */}
-      <StarfieldBackground className="section-background" particleCount={25} />
-      
-      {/* Glowing background */}
-      <motion.div
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] rounded-full bg-gradient-to-r from-accent/10 via-slate/10 to-silver/10 opacity-20 blur-3xl"
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.1, 0.2, 0.1],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
 
       <motion.div
         className="relative z-10 max-w-6xl mx-auto px-4"

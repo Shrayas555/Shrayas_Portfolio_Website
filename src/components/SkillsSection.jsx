@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { useState, useMemo } from 'react';
-import StarfieldBackground from './StarfieldBackground';
 
 
 // Skills organized by category with proper icon references
@@ -122,23 +121,6 @@ const SkillsSection = ({ scrollDirection }) => {
 
   return (
     <section id="skills" className="relative py-20 bg-black overflow-hidden">
-      {/* Starfield background */}
-      <StarfieldBackground className="section-background" particleCount={40} />
-      
-      {/* Subtle glowing background */}
-      <motion.div
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[900px] rounded-full bg-gradient-to-r from-accent/10 via-slate/10 to-silver/10 opacity-30 blur-3xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-          rotate: [0, 180, 360],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
 
       <motion.div
         className="relative z-10 max-w-7xl mx-auto px-8"

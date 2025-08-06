@@ -71,11 +71,11 @@ function App() {
         )}
       </AnimatePresence>
 
-      {/* Particle system for transition - reduced count */}
+      {/* Particle system for transition - further reduced count */}
       <AnimatePresence>
         {transitionPhase === 'transitioning' && (
           <div className="fixed inset-0 z-30 pointer-events-none">
-            {[...Array(50)].map((_, i) => ( // Reduced from 100 to 50
+            {[...Array(20)].map((_, i) => ( // Further reduced for better performance
               <motion.div
                 key={i}
                 className="absolute w-1 h-1 bg-white rounded-full"
@@ -85,20 +85,16 @@ function App() {
                 }}
                 initial={{ 
                   opacity: 0, 
-                  scale: 0,
-                  x: Math.random() * 200 - 100,
-                  y: Math.random() * 200 - 100
+                  scale: 0
                 }}
                 animate={{ 
                   opacity: [0, 1, 0], 
-                  scale: [0, 1, 0],
-                  x: 0,
-                  y: 0
+                  scale: [0, 1, 0]
                 }}
                 exit={{ opacity: 0, scale: 0 }}
                 transition={{
-                  duration: 1.5,
-                  delay: Math.random() * 0.5,
+                  duration: 1,
+                  delay: Math.random() * 0.3,
                   ease: "easeInOut"
                 }}
               />
@@ -134,15 +130,12 @@ function App() {
             
             <motion.main 
               className="flex-1 ml-0 xl:ml-80 h-full relative overflow-y-auto bg-black flex justify-center"
-              initial={{ x: 200, opacity: 0, scale: 0.95 }}
-              animate={{ x: 0, opacity: 1, scale: 1 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ 
-                duration: 1.5, 
-                delay: 0.5,
-                ease: [0.25, 0.46, 0.45, 0.94],
-                type: "spring",
-                stiffness: 40,
-                damping: 25
+                duration: 0.8, 
+                delay: 0.3,
+                ease: "easeOut"
               }}
             >
               {/* Enhanced SVG tech/grid overlay */}

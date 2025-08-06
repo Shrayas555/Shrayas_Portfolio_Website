@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import StarfieldBackground from './StarfieldBackground';
 
 const projects = [
   { 
@@ -88,8 +87,6 @@ const ProjectsSection = ({ scrollDirection }) => {
 
   return (
     <section id="projects" className="relative py-20 bg-black overflow-hidden">
-      {/* Starfield background with moving particles */}
-      <StarfieldBackground className="section-background" particleCount={30} />
 
       <motion.div
         className="relative z-10 max-w-7xl mx-auto px-4"
