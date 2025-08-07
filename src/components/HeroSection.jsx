@@ -363,17 +363,7 @@ const HeroSection = () => {
         </motion.div>
       </div>
       
-      {/* Micro-interaction: subtle scroll indicator - hidden on mobile */}
-      <motion.div 
-        className="absolute bottom-4 lg:bottom-12 left-1/2 -translate-x-1/2 hidden md:block"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 3.5, duration: 0.8 }}
-      >
-        <div className="w-6 h-10 rounded-full border-2 border-accent flex items-start justify-center p-1 animate-bounce" style={{ boxShadow: '0 0 15px rgba(163, 163, 163, 0.5)' }}>
-          <div className="w-2 h-2 bg-accent rounded-full" />
-        </div>
-      </motion.div>
+
 
       {/* Floating particles around the name */}
       {nameAnimationComplete && (
